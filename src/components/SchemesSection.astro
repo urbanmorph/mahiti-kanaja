@@ -18,8 +18,8 @@ const { schemes } = Astro.props;
   <div class="container">
     <div class="section-header fade-up">
       <div class="accent-line"></div>
-      <h2>Government Schemes</h2>
-      <p>Key welfare programs currently active in Karnataka. Check your eligibility and track benefits.</p>
+      <h2 data-en="Government Schemes" data-kn="ಸರ್ಕಾರಿ ಯೋಜನೆಗಳು">Government Schemes</h2>
+      <p data-en="Key welfare programs currently active in Karnataka. Check your eligibility and track benefits." data-kn="ಕರ್ನಾಟಕದಲ್ಲಿ ಪ್ರಸ್ತುತ ಸಕ್ರಿಯವಾಗಿರುವ ಪ್ರಮುಖ ಕಲ್ಯಾಣ ಕಾರ್ಯಕ್ರಮಗಳು. ನಿಮ್ಮ ಅರ್ಹತೆಯನ್ನು ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಪ್ರಯೋಜನಗಳನ್ನು ಟ್ರ್ಯಾಕ್ ಮಾಡಿ.">Key welfare programs currently active in Karnataka. Check your eligibility and track benefits.</p>
     </div>
 
     <div class="schemes-grid stagger-children">
@@ -29,7 +29,7 @@ const { schemes } = Astro.props;
           <span class:list={['scheme-tag', scheme.category]}>{scheme.category}</span>
           <h3>{scheme.name}</h3>
           <p>{scheme.description}</p>
-          <a href={scheme.slug ? `/schemes/${scheme.slug}` : '#'} class="scheme-link">
+          <a href="/coming-soon" class="scheme-link">
             Check Eligibility
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>

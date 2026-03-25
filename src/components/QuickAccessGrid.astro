@@ -34,13 +34,13 @@ function getIconSvg(icon?: string): string {
   <div class="container">
     <div class="section-header fade-up">
       <div class="accent-line"></div>
-      <h2>Most Used Services</h2>
-      <p>Quick access to the services citizens use most. No registration or login needed.</p>
+      <h2 data-en="Most Used Services" data-kn="ಹೆಚ್ಚು ಬಳಸುವ ಸೇವೆಗಳು">Most Used Services</h2>
+      <p data-en="Quick access to the services citizens use most. No registration or login needed." data-kn="ನಾಗರಿಕರು ಹೆಚ್ಚು ಬಳಸುವ ಸೇವೆಗಳಿಗೆ ತ್ವರಿತ ಪ್ರವೇಶ. ನೋಂದಣಿ ಅಥವಾ ಲಾಗಿನ್ ಅಗತ್ಯವಿಲ್ಲ.">Quick access to the services citizens use most. No registration or login needed.</p>
     </div>
 
     <div class="quick-grid stagger-children">
       {services.map((service) => (
-        <a href={service.slug ? `/services#${service.slug}` : '#'} class="quick-card fade-up">
+        <a href="/coming-soon" class="quick-card fade-up">
           <div class="card-top-border"></div>
           <div class="card-icon">
             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">

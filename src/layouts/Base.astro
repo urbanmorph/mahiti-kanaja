@@ -47,11 +47,23 @@ const {
       document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
       // Language toggle
-      document.querySelectorAll('.lang-toggle button').forEach(btn => {
-        btn.addEventListener('click', () => {
-          document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
+      const langBtns = document.querySelectorAll('.lang-toggle button');
+      const savedLang = localStorage.getItem('mk-lang') || 'en';
+
+      function setLang(lang) {
+        document.querySelectorAll('[data-en][data-kn]').forEach(el => {
+          el.textContent = el.dataset[lang];
         });
+        langBtns.forEach(b => {
+          b.classList.toggle('active', b.dataset.lang === lang);
+        });
+        localStorage.setItem('mk-lang', lang);
+        document.documentElement.lang = lang === 'kn' ? 'kn' : 'en';
+      }
+
+      setLang(savedLang);
+      langBtns.forEach(btn => {
+        btn.addEventListener('click', () => setLang(btn.dataset.lang));
       });
 
       // Font size
