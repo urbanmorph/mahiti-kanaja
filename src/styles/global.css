@@ -90,3 +90,67 @@ a:hover { color: var(--color-red); }
 .stagger-children .fade-up:nth-child(8) { transition-delay: 0.4s; }
 
 @keyframes countUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ─── BILINGUAL TOGGLE ─── */
+/* Default: English visible, Kannada hidden */
+.lang-kn { display: none; }
+.lang-en { display: inline; }
+
+/* When html lang="kn": swap */
+html[lang="kn"] .lang-kn { display: inline; }
+html[lang="kn"] .lang-en { display: none; }
+
+/* Block variants for paragraphs */
+.lang-kn-block { display: none; }
+.lang-en-block { display: block; }
+html[lang="kn"] .lang-kn-block { display: block; }
+html[lang="kn"] .lang-en-block { display: none; }
+
+/* ─── HIGH CONTRAST MODE ─── */
+html.high-contrast {
+  --color-surface: #000000;
+  --color-surface-warm: #000000;
+  --color-surface-cool: #111111;
+  --color-ink: #FFFFFF;
+  --color-ink-light: #E0E0E0;
+  --color-ink-muted: #CCCCCC;
+  --color-border: #555555;
+  --color-border-light: #444444;
+  --color-red-light: #3D0A12;
+  --color-blue-light: #0A1A3D;
+  --color-green-light: #0A2E1F;
+  --color-gold-light: #2E2A0A;
+}
+
+html.high-contrast body {
+  background: #000;
+  color: #fff;
+}
+
+html.high-contrast a { color: var(--color-gold); }
+html.high-contrast a:hover { color: #fff; }
+
+html.high-contrast .header,
+html.high-contrast .search-dropdown {
+  background: #000;
+  border-color: #555;
+}
+
+html.high-contrast .search-bar input {
+  background: #111;
+  color: #fff;
+  border-color: #555;
+}
+
+html.high-contrast .quick-card,
+html.high-contrast .pathway-card,
+html.high-contrast .scheme-card,
+html.high-contrast .dash-card {
+  background: #111;
+  border-color: #444;
+  color: #fff;
+}
+
+html.high-contrast .footer {
+  background: #000;
+}

@@ -2,7 +2,9 @@
 // SchemesSection.astro — "Government Schemes" section
 interface Scheme {
   name: string;
+  nameKn?: string;
   description: string;
+  descKn?: string;
   category: string;
   slug?: string;
 }
@@ -27,10 +29,10 @@ const { schemes } = Astro.props;
         <div class:list={['scheme-card fade-up', scheme.category]}>
           <div class="scheme-left-border"></div>
           <span class:list={['scheme-tag', scheme.category]}>{scheme.category}</span>
-          <h3>{scheme.name}</h3>
-          <p>{scheme.description}</p>
+          <h3><span class="lang-en">{scheme.name}</span><span class="lang-kn">{scheme.nameKn || scheme.name}</span></h3>
+          <p><span class="lang-en">{scheme.description}</span><span class="lang-kn">{scheme.descKn || scheme.description}</span></p>
           <a href="/coming-soon" class="scheme-link">
-            Check Eligibility
+            <span class="lang-en">Check Eligibility</span><span class="lang-kn">ಅರ್ಹತೆ ಪರಿಶೀಲಿಸಿ</span>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
         </div>

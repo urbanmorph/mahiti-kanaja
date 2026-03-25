@@ -107,8 +107,8 @@ function getDotColor(gradient: string): string {
             <circle cx="12" cy="7" r="4"></circle>
           </svg>
         </div>
-        <h1 class="hero-title">Browse by Life Event</h1>
-        <p class="hero-subtitle">
+        <h1 class="hero-title" data-en="Browse by Life Event" data-kn="ಜೀವನ ಘಟನೆಯ ಪ್ರಕಾರ ಬ್ರೌಸ್ ಮಾಡಿ">Browse by Life Event</h1>
+        <p class="hero-subtitle" data-en="Find relevant government services based on where you are in life. Select a life event to discover the services, schemes, and information most relevant to your current needs." data-kn="ನಿಮ್ಮ ಜೀವನದ ಹಂತಕ್ಕೆ ಅನುಗುಣವಾಗಿ ಸಂಬಂಧಿತ ಸರ್ಕಾರಿ ಸೇವೆಗಳನ್ನು ಹುಡುಕಿ. ನಿಮ್ಮ ಪ್ರಸ್ತುತ ಅಗತ್ಯಗಳಿಗೆ ಅತ್ಯಂತ ಸೂಕ್ತವಾದ ಸೇವೆಗಳನ್ನು ಕಂಡುಹಿಡಿಯಲು ಜೀವನ ಘಟನೆಯನ್ನು ಆಯ್ಕೆ ಮಾಡಿ.">
           Find relevant government services based on where you are in life. Select a life event to discover the services, schemes, and information most relevant to your current needs.
         </p>
       </div>
@@ -143,7 +143,7 @@ function getDotColor(gradient: string): string {
 
                 {/* Related Services */}
                 <div class="related-section">
-                  <p class="related-label">Related Services</p>
+                  <p class="related-label"><span class="lang-en">Related Services</span><span class="lang-kn">ಸಂಬಂಧಿತ ಸೇವೆಗಳು</span></p>
                   <div class="related-list">
                     {relatedServices.slice(0, 4).map((service) => (
                       <a
@@ -155,9 +155,11 @@ function getDotColor(gradient: string): string {
                         <div class="related-dot" style={`background: ${dotColor}`}></div>
                         <div class="related-text">
                           <span class="related-name">
-                            {service!.name.en}
+                            <span class="lang-en">{service!.name.en}</span><span class="lang-kn">{service!.name.kn}</span>
                           </span>
-                          <span class="related-kn">{service!.name.kn}</span>
+                          <span class="related-kn">
+                            <span class="lang-en">{service!.name.kn}</span><span class="lang-kn">{service!.name.en}</span>
+                          </span>
                         </div>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="related-arrow">
                           <line x1="5" y1="12" x2="19" y2="12"></line>

@@ -4,6 +4,7 @@ interface Service {
   name: string;
   nameKn?: string;
   description: string;
+  descKn?: string;
   icon?: string;
   slug?: string;
 }
@@ -47,11 +48,11 @@ function getIconSvg(icon?: string): string {
               <Fragment set:html={getIconSvg(service.icon)} />
             </svg>
           </div>
-          <h3>{service.name}</h3>
-          {service.nameKn && <div class="kn-title">{service.nameKn}</div>}
-          <div class="desc">{service.description}</div>
+          <h3><span class="lang-en">{service.name}</span><span class="lang-kn">{service.nameKn || service.name}</span></h3>
+          <div class="kn-title lang-en">{service.nameKn}</div>
+          <div class="desc"><span class="lang-en">{service.description}</span><span class="lang-kn">{service.descKn || service.description}</span></div>
           <div class="arrow">
-            View details
+            <span class="lang-en">View details</span><span class="lang-kn">ವಿವರಗಳನ್ನು ನೋಡಿ</span>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
               <path d="M5 12h14M12 5l7 7-7 7"/>
             </svg>

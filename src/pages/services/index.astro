@@ -52,8 +52,8 @@ const services = servicesRaw.sort((a, b) => a.popularity - b.popularity);
   <section class="hero-section">
     <div class="container">
       <div class="fade-up text-center hero-inner">
-        <h1 class="hero-title">All Services</h1>
-        <p class="hero-subtitle">
+        <h1 class="hero-title" data-en="All Services" data-kn="ಎಲ್ಲಾ ಸೇವೆಗಳು">All Services</h1>
+        <p class="hero-subtitle" data-en="Browse 450+ government services available to citizens of Karnataka. Use the filters below to narrow by sector." data-kn="ಕರ್ನಾಟಕದ ನಾಗರಿಕರಿಗೆ ಲಭ್ಯವಿರುವ 450+ ಸರ್ಕಾರಿ ಸೇವೆಗಳನ್ನು ಬ್ರೌಸ್ ಮಾಡಿ. ವಲಯದ ಪ್ರಕಾರ ಫಿಲ್ಟರ್ ಮಾಡಲು ಕೆಳಗಿನ ಫಿಲ್ಟರ್‌ಗಳನ್ನು ಬಳಸಿ.">
           Browse 450+ government services available to citizens of Karnataka. Use the filters below to narrow by sector.
         </p>
       </div>
@@ -105,15 +105,17 @@ const services = servicesRaw.sort((a, b) => a.popularity - b.popularity);
 
             {/* Service name */}
             <h3 class="card-title">
-              {service.name.en}
+              <span class="lang-en">{service.name.en}</span><span class="lang-kn">{service.name.kn}</span>
             </h3>
 
-            {/* Kannada name */}
-            <p class="card-kn">{service.name.kn}</p>
+            {/* Subtitle in other language */}
+            <p class="card-kn">
+              <span class="lang-en">{service.name.kn}</span><span class="lang-kn">{service.name.en}</span>
+            </p>
 
             {/* Description */}
             <p class="card-desc">
-              {service.description.en}
+              <span class="lang-en">{service.description.en}</span><span class="lang-kn">{service.description.kn}</span>
             </p>
 
             {/* Department badge + external indicator */}
@@ -137,7 +139,7 @@ const services = servicesRaw.sort((a, b) => a.popularity - b.popularity);
             <a href={service.url} class="card-link"
                target={service.external ? '_blank' : undefined}
                rel={service.external ? 'noopener noreferrer' : undefined}>
-              View details
+              <span class="lang-en">View details</span><span class="lang-kn">ವಿವರಗಳನ್ನು ವೀಕ್ಷಿಸಿ</span>
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="5" y1="12" x2="19" y2="12"></line>
                 <polyline points="12 5 19 12 12 19"></polyline>

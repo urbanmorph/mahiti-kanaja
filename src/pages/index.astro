@@ -18,15 +18,16 @@ const services = servicesRaw
     name: s.name.en,
     nameKn: s.name.kn,
     description: s.description.en,
+    descKn: s.description.kn,
     icon: s.icon,
     slug: s.id,
   }));
 
-// Transform schemes to match SchemesSection's expected props
-// SchemesSection expects: { name: string; description: string; category: string; slug?: string }
 const schemes = schemesRaw.map((s) => ({
   name: s.name.en,
+  nameKn: s.name.kn,
   description: s.description.en,
+  descKn: s.description.kn,
   category: s.tag,
   slug: s.id,
 }));

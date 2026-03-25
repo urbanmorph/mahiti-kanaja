@@ -59,8 +59,8 @@ function getSectorStyle(sector: string) {
             <line x1="12" y1="17" x2="12" y2="21"></line>
           </svg>
         </div>
-        <h1 class="hero-title">Browse by Department</h1>
-        <p class="hero-subtitle">
+        <h1 class="hero-title" data-en="Browse by Department" data-kn="ಇಲಾಖೆ ಪ್ರಕಾರ ಬ್ರೌಸ್ ಮಾಡಿ">Browse by Department</h1>
+        <p class="hero-subtitle" data-en="Explore 30+ government departments of Karnataka. Each department manages a range of public services, schemes, and programs for citizens." data-kn="ಕರ್ನಾಟಕದ 30+ ಸರ್ಕಾರಿ ಇಲಾಖೆಗಳನ್ನು ಅನ್ವೇಷಿಸಿ. ಪ್ರತಿ ಇಲಾಖೆ ನಾಗರಿಕರಿಗೆ ಸಾರ್ವಜನಿಕ ಸೇವೆಗಳು, ಯೋಜನೆಗಳು ಮತ್ತು ಕಾರ್ಯಕ್ರಮಗಳನ್ನು ನಿರ್ವಹಿಸುತ್ತದೆ.">
           Explore 30+ government departments of Karnataka. Each department manages a range of public services, schemes, and programs for citizens.
         </p>
       </div>
@@ -83,9 +83,11 @@ function getSectorStyle(sector: string) {
 
               {/* Department name */}
               <h3 class="card-title">
-                {dept.name.en}
+                <span class="lang-en">{dept.name.en}</span><span class="lang-kn">{dept.name.kn}</span>
               </h3>
-              <p class="card-kn">{dept.name.kn}</p>
+              <p class="card-kn">
+                <span class="lang-en">{dept.name.kn}</span><span class="lang-kn">{dept.name.en}</span>
+              </p>
 
               {/* Sector badge + service count */}
               <div class="card-footer">
@@ -99,7 +101,7 @@ function getSectorStyle(sector: string) {
 
               {/* Link indicator */}
               <span class="card-link-indicator">
-                Browse services
+                <span class="lang-en">Browse services</span><span class="lang-kn">ಸೇವೆಗಳನ್ನು ಬ್ರೌಸ್ ಮಾಡಿ</span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
                   <polyline points="12 5 19 12 12 19"></polyline>

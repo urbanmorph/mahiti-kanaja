@@ -28,6 +28,16 @@ const {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <title>{title} | ಮಾಹಿತಿ ಕಣಜ</title>
+    <!-- Prevent FOUC: apply saved preferences before render -->
+    <script is:inline>
+      (function() {
+        var lang = localStorage.getItem('mk-lang') || 'en';
+        document.documentElement.lang = lang;
+        var fs = localStorage.getItem('mk-fs');
+        if (fs) document.documentElement.style.fontSize = fs + 'px';
+        if (localStorage.getItem('mk-contrast') === 'true') document.documentElement.classList.add('high-contrast');
+      })();
+    </script>
   </head>
   <body>
     <TopBar />
@@ -51,14 +61,17 @@ const {
       const savedLang = localStorage.getItem('mk-lang') || 'en';
 
       function setLang(lang) {
+        // Swap data-en/data-kn text
         document.querySelectorAll('[data-en][data-kn]').forEach(el => {
           el.textContent = el.dataset[lang];
         });
+        // Toggle button active state
         langBtns.forEach(b => {
           b.classList.toggle('active', b.dataset.lang === lang);
         });
+        // Set lang attribute (drives .lang-en/.lang-kn CSS visibility)
+        document.documentElement.lang = lang;
         localStorage.setItem('mk-lang', lang);
-        document.documentElement.lang = lang === 'kn' ? 'kn' : 'en';
       }
 
       setLang(savedLang);
@@ -75,8 +88,11 @@ const {
       document.getElementById('font-increase')?.addEventListener('click', () => {
         if (fontSize < 22) { fontSize++; document.documentElement.style.fontSize = fontSize + 'px'; localStorage.setItem('mk-fs', String(fontSize)); }
       });
+
+      // High contrast toggle
       document.getElementById('contrast-toggle')?.addEventListener('click', () => {
-        document.body.classList.toggle('high-contrast');
+        const on = document.documentElement.classList.toggle('high-contrast');
+        localStorage.setItem('mk-contrast', String(on));
       });
     </script>
   </body>
