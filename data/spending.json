@@ -1,0 +1,36 @@
+{
+  "district_allocation": [
+    { "district": "Bengaluru Urban", "allocated": 4280, "released": 3850, "utilized": 3420 },
+    { "district": "Mysuru", "allocated": 2940, "released": 2610, "utilized": 2280 },
+    { "district": "Belagavi", "allocated": 2410, "released": 2180, "utilized": 1890 },
+    { "district": "Kalaburagi", "allocated": 2080, "released": 1820, "utilized": 1540 },
+    { "district": "Dharwad", "allocated": 1790, "released": 1580, "utilized": 1340 },
+    { "district": "Dakshina Kannada", "allocated": 1650, "released": 1480, "utilized": 1290 },
+    { "district": "Tumakuru", "allocated": 1580, "released": 1390, "utilized": 1180 },
+    { "district": "Ballari", "allocated": 1520, "released": 1340, "utilized": 1120 },
+    { "district": "Raichur", "allocated": 1470, "released": 1280, "utilized": 1050 },
+    { "district": "Hassan", "allocated": 1380, "released": 1210, "utilized": 1020 }
+  ],
+  "pension_disbursement": {
+    "total_cr": 892,
+    "quarter": "Q3 FY 2025-26",
+    "breakdown": [
+      { "type": "Old Age", "amount_cr": 401 },
+      { "type": "Widow", "amount_cr": 246 },
+      { "type": "Disability", "amount_cr": 156 },
+      { "type": "Other", "amount_cr": 89 }
+    ]
+  },
+  "infrastructure_projects": {
+    "financial_year": "FY 2025-26",
+    "completed": 1247,
+    "in_progress": 834,
+    "planned": 412
+  },
+  "top_schemes": [
+    { "name": "Anna Bhagya", "beneficiaries_lakh": 42.8 },
+    { "name": "Gruh Jyothi", "beneficiaries_lakh": 38.1 },
+    { "name": "Shakthi Yojane", "beneficiaries_lakh": 25.6 },
+    { "name": "Gruh Lakshmi", "beneficiaries_lakh": 18.3 }
+  ]
+}

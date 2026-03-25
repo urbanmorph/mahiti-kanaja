@@ -1,0 +1,104 @@
+---
+// Footer.astro — Dark site footer
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="kn">ಮಾಹಿತಿ ಕಣಜ</div>
+        <div class="en">Mahiti Kanaja</div>
+        <p>A transparency initiative by the Government of Karnataka empowering citizens with public information under the Right to Information Act, Section 4(2).</p>
+      </div>
+
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="/services">All Services</a></li>
+          <li><a href="/explore/by-department">Departments</a></li>
+          <li><a href="/dashboard">Data Visualization</a></li>
+          <li><a href="#">Government Orders</a></li>
+          <li><a href="#">Circulars</a></li>
+          <li><a href="#">Policies</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Important Links</h4>
+        <ul>
+          <li><a href="#">Seva Sindhu</a></li>
+          <li><a href="#">Karnataka GIS (KGIS)</a></li>
+          <li><a href="#">e-Governance Portal</a></li>
+          <li><a href="#">RTI Online</a></li>
+          <li><a href="#">Grama Sabha</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Help & Support</h4>
+        <ul>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Feedback</a></li>
+          <li><a href="#">Department Helpline</a></li>
+          <li><a href="#">Website Manual</a></li>
+          <li><a href="#">Accessibility Statement</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>&copy; 2026 Government of Karnataka — Centre for e-Governance &middot; Designed for citizens, by Karnataka</span>
+      <div class="footer-badges">
+        <span class="footer-badge">WCAG 2.0 AA</span>
+        <span class="footer-badge">GIGW Compliant</span>
+        <span class="footer-badge">CeG/KRN 3.0</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--color-ink);
+    color: rgba(255,255,255,0.7);
+    padding: 56px 0 0;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .footer-brand .kn { font-size: 1.2rem; font-weight: 600; color: #fff; }
+  .footer-brand .en { font-size: 0.72rem; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.06em; }
+  .footer-brand p { font-size: 0.82rem; margin-top: 12px; line-height: 1.7; color: rgba(255,255,255,0.5); }
+
+  .footer h4 {
+    font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.4); margin-bottom: 16px; font-weight: 600;
+  }
+  .footer ul { list-style: none; padding: 0; }
+  .footer li { margin-bottom: 8px; }
+  .footer li a { color: rgba(255,255,255,0.65); font-size: 0.85rem; text-decoration: none; }
+  .footer li a:hover { color: var(--color-gold); }
+
+  .footer-bottom {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 0; font-size: 0.75rem; color: rgba(255,255,255,0.3);
+  }
+  .footer-badges { display: flex; gap: 12px; }
+  .footer-badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 4px 10px;
+    border: 1px solid rgba(255,255,255,0.08); border-radius: 4px;
+    font-size: 0.68rem; color: rgba(255,255,255,0.4);
+  }
+
+  @media (max-width: 1024px) { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 768px) {
+    .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+    .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>

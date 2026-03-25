@@ -1,0 +1,50 @@
+[
+  {
+    "id": "shakthi-yojane",
+    "name": { "en": "Shakthi Yojane", "kn": "ಶಕ್ತಿ ಯೋಜನೆ" },
+    "description": { "en": "Free bus travel for women across Karnataka on all government bus services — KSRTC, BMTC, NWKRTC, and NEKRTC.", "kn": "ಕರ್ನಾಟಕದಾದ್ಯಂತ ಎಲ್ಲ ಸರ್ಕಾರಿ ಬಸ್ ಸೇವೆಗಳಲ್ಲಿ ಮಹಿಳೆಯರಿಗೆ ಉಚಿತ ಬಸ್ ಪ್ರಯಾಣ." },
+    "tag": "welfare",
+    "beneficiaries": "25.6 Lakh",
+    "budget_cr": 4500
+  },
+  {
+    "id": "gruh-jyothi",
+    "name": { "en": "Gruh Jyothi", "kn": "ಗೃಹ ಜ್ಯೋತಿ" },
+    "description": { "en": "Free electricity up to 200 units per month for all domestic consumers in the state.", "kn": "ರಾಜ್ಯದ ಎಲ್ಲ ಗೃಹ ಬಳಕೆದಾರರಿಗೆ ತಿಂಗಳಿಗೆ 200 ಯೂನಿಟ್‌ವರೆಗೆ ಉಚಿತ ವಿದ್ಯುತ್." },
+    "tag": "energy",
+    "beneficiaries": "38.1 Lakh",
+    "budget_cr": 12900
+  },
+  {
+    "id": "gruh-lakshmi",
+    "name": { "en": "Gruh Lakshmi", "kn": "ಗೃಹ ಲಕ್ಷ್ಮಿ" },
+    "description": { "en": "Monthly financial assistance of ₹2,000 to women heads of household across Karnataka.", "kn": "ಕರ್ನಾಟಕದಾದ್ಯಂತ ಮನೆಯ ಮಹಿಳಾ ಮುಖ್ಯಸ್ಥರಿಗೆ ₹2,000 ಮಾಸಿಕ ಆರ್ಥಿಕ ನೆರವು." },
+    "tag": "housing",
+    "beneficiaries": "18.3 Lakh",
+    "budget_cr": 8400
+  },
+  {
+    "id": "yuva-nidhi",
+    "name": { "en": "Yuva Nidhi", "kn": "ಯುವ ನಿಧಿ" },
+    "description": { "en": "Monthly stipend of ₹1,500–₹3,000 for unemployed graduates while they search for employment.", "kn": "ನಿರುದ್ಯೋಗ ಪದವೀಧರರಿಗೆ ಉದ್ಯೋಗ ಹುಡುಕುವಾಗ ₹1,500–₹3,000 ಮಾಸಿಕ ಭತ್ಯೆ." },
+    "tag": "education",
+    "beneficiaries": "4.2 Lakh",
+    "budget_cr": 1500
+  },
+  {
+    "id": "anna-bhagya",
+    "name": { "en": "Anna Bhagya", "kn": "ಅನ್ನ ಭಾಗ್ಯ" },
+    "description": { "en": "Additional 5 kg of free rice per person per month to BPL families under the food security program.", "kn": "ಆಹಾರ ಭದ್ರತಾ ಕಾರ್ಯಕ್ರಮದ ಅಡಿಯಲ್ಲಿ BPL ಕುಟುಂಬಗಳಿಗೆ ವ್ಯಕ್ತಿಗೆ ತಿಂಗಳಿಗೆ 5 ಕೆಜಿ ಹೆಚ್ಚುವರಿ ಉಚಿತ ಅಕ್ಕಿ." },
+    "tag": "food",
+    "beneficiaries": "42.8 Lakh",
+    "budget_cr": 5200
+  },
+  {
+    "id": "parihara-scheme",
+    "name": { "en": "Parihara Scheme", "kn": "ಪರಿಹಾರ ಯೋಜನೆ" },
+    "description": { "en": "Compensation and relief disbursement for natural disaster-affected families in Karnataka.", "kn": "ಕರ್ನಾಟಕದಲ್ಲಿ ನೈಸರ್ಗಿಕ ವಿಪತ್ತಿನಿಂದ ಬಾಧಿತ ಕುಟುಂಬಗಳಿಗೆ ಪರಿಹಾರ ಮತ್ತು ನೆರವು ವಿತರಣೆ." },
+    "tag": "welfare",
+    "beneficiaries": "2.1 Lakh",
+    "budget_cr": 3800
+  }
+]

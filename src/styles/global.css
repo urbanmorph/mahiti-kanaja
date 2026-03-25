@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════
+   DESIGN SYSTEM — "Democratic Precision"
+   ═══════════════════════════════════════════════ */
+
+@theme {
+  --color-red: #C41E3A;
+  --color-red-dark: #9B1830;
+  --color-red-light: #F8E8EB;
+  --color-gold: #FFD700;
+  --color-gold-muted: #F5C518;
+  --color-gold-light: #FFF9E0;
+  --color-ink: #1A1A2E;
+  --color-ink-light: #3D3D56;
+  --color-ink-muted: #6B6B80;
+  --color-surface: #FFFFFF;
+  --color-surface-warm: #FAFAF8;
+  --color-surface-cool: #F4F5F7;
+  --color-border: #E8E8ED;
+  --color-border-light: #F0F0F4;
+  --color-blue: #2563EB;
+  --color-blue-light: #EFF6FF;
+  --color-green: #0D9F6E;
+  --color-green-light: #ECFDF5;
+  --color-amber: #D97706;
+
+  --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Playfair Display', Georgia, serif;
+}
+
+/* Custom container — override Tailwind's built-in */
+.container {
+  width: 100% !important;
+  max-width: 1200px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 24px !important;
+  padding-right: 24px !important;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* Tailwind v4 preflight sets svg to display:block which makes
+   SVGs without explicit dimensions expand to fill their container.
+   We add width/height attrs on all SVGs, so just ensure they don't overflow. */
+svg { flex-shrink: 0; }
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-ink);
+  background: var(--color-surface-warm);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a { color: var(--color-blue); text-decoration: none; transition: color 0.2s cubic-bezier(0.22, 1, 0.36, 1); }
+a:hover { color: var(--color-red); }
+
+/* Section accent line */
+.accent-line {
+  width: 40px;
+  height: 3px;
+  background: var(--color-red);
+  border-radius: 2px;
+  margin-bottom: 16px;
+}
+
+/* ─── SCROLL ANIMATIONS ─── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+.stagger-children .fade-up:nth-child(1) { transition-delay: 0.05s; }
+.stagger-children .fade-up:nth-child(2) { transition-delay: 0.1s; }
+.stagger-children .fade-up:nth-child(3) { transition-delay: 0.15s; }
+.stagger-children .fade-up:nth-child(4) { transition-delay: 0.2s; }
+.stagger-children .fade-up:nth-child(5) { transition-delay: 0.25s; }
+.stagger-children .fade-up:nth-child(6) { transition-delay: 0.3s; }
+.stagger-children .fade-up:nth-child(7) { transition-delay: 0.35s; }
+.stagger-children .fade-up:nth-child(8) { transition-delay: 0.4s; }
+
+@keyframes countUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }

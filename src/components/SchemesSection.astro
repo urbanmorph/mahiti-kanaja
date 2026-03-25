@@ -1,0 +1,106 @@
+---
+// SchemesSection.astro — "Government Schemes" section
+interface Scheme {
+  name: string;
+  description: string;
+  category: string;
+  slug?: string;
+}
+
+interface Props {
+  schemes: Scheme[];
+}
+
+const { schemes } = Astro.props;
+---
+
+<section class="section-block section-alt">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="accent-line"></div>
+      <h2>Government Schemes</h2>
+      <p>Key welfare programs currently active in Karnataka. Check your eligibility and track benefits.</p>
+    </div>
+
+    <div class="schemes-grid stagger-children">
+      {schemes.map((scheme) => (
+        <div class:list={['scheme-card fade-up', scheme.category]}>
+          <div class="scheme-left-border"></div>
+          <span class:list={['scheme-tag', scheme.category]}>{scheme.category}</span>
+          <h3>{scheme.name}</h3>
+          <p>{scheme.description}</p>
+          <a href={scheme.slug ? `/schemes/${scheme.slug}` : '#'} class="scheme-link">
+            Check Eligibility
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-block { padding: 72px 0; }
+  .section-alt { background: var(--color-surface); }
+
+  .section-header { margin-bottom: 40px; }
+  .section-header h2 {
+    font-family: var(--font-display); font-size: 1.8rem; font-weight: 600;
+    color: var(--color-ink); letter-spacing: -0.02em; margin-bottom: 8px;
+  }
+  .section-header p { color: var(--color-ink-muted); font-size: 0.95rem; max-width: 560px; }
+
+  .schemes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .scheme-card {
+    background: var(--color-surface-warm);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 28px 24px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .scheme-left-border {
+    position: absolute; top: 0; left: 0; width: 4px; height: 100%;
+    background: linear-gradient(180deg, var(--color-red), var(--color-gold));
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .scheme-card:hover {
+    box-shadow: 0 4px 16px rgba(26,26,46,0.08), 0 2px 4px rgba(26,26,46,0.04);
+    transform: translateY(-2px);
+  }
+  .scheme-card:hover .scheme-left-border { opacity: 1; }
+
+  .scheme-tag {
+    display: inline-block; font-size: 0.65rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    padding: 3px 8px; border-radius: 4px; margin-bottom: 12px;
+  }
+  .scheme-tag.welfare { background: var(--color-green-light); color: var(--color-green); }
+  .scheme-tag.housing { background: var(--color-blue-light); color: var(--color-blue); }
+  .scheme-tag.energy { background: var(--color-gold-light); color: var(--color-amber); }
+  .scheme-tag.education { background: #FEF3C7; color: #92400E; }
+  .scheme-tag.food { background: var(--color-red-light); color: var(--color-red); }
+
+  .scheme-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 8px; }
+  .scheme-card p { font-size: 0.82rem; color: var(--color-ink-muted); line-height: 1.6; margin-bottom: 16px; }
+
+  .scheme-link {
+    font-size: 0.8rem; font-weight: 600; color: var(--color-red);
+    display: flex; align-items: center; gap: 4px;
+    transition: gap 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+    text-decoration: none;
+  }
+  .scheme-card:hover .scheme-link { gap: 8px; }
+  .scheme-link svg { width: 14px; height: 14px; }
+
+  @media (max-width: 768px) {
+    .section-block { padding: 48px 0; }
+    .schemes-grid { grid-template-columns: 1fr; }
+  }
+</style>

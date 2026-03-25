@@ -1,0 +1,263 @@
+---
+import Base from '../../layouts/Base.astro';
+import departments from '../../../data/departments.json';
+
+// Sector badge colors
+const sectorColors: Record<string, { bg: string; text: string }> = {
+  welfare: { bg: 'bg-green-light', text: 'text-green' },
+  food: { bg: 'bg-red-light', text: 'text-red' },
+  'law-order': { bg: 'bg-surface-cool', text: 'text-ink-muted' },
+  transport: { bg: 'bg-blue-light', text: 'text-blue' },
+  education: { bg: 'bg-gold-light', text: 'text-amber' },
+  infrastructure: { bg: 'bg-blue-light', text: 'text-blue' },
+  agriculture: { bg: 'bg-green-light', text: 'text-green' },
+  health: { bg: 'bg-red-light', text: 'text-red' },
+  revenue: { bg: 'bg-gold-light', text: 'text-amber' },
+  housing: { bg: 'bg-blue-light', text: 'text-blue' },
+  urban: { bg: 'bg-blue-light', text: 'text-blue' },
+  utilities: { bg: 'bg-gold-light', text: 'text-amber' },
+  governance: { bg: 'bg-surface-cool', text: 'text-ink-muted' },
+  employment: { bg: 'bg-green-light', text: 'text-green' },
+  environment: { bg: 'bg-green-light', text: 'text-green' },
+  emergency: { bg: 'bg-red-light', text: 'text-red' },
+};
+
+// Sector display labels
+const sectorLabels: Record<string, string> = {
+  welfare: 'Welfare',
+  food: 'Food',
+  'law-order': 'Law & Order',
+  transport: 'Transport',
+  education: 'Education',
+  infrastructure: 'Infrastructure',
+  revenue: 'Revenue',
+  agriculture: 'Agriculture',
+  health: 'Health',
+  housing: 'Housing',
+  urban: 'Urban',
+  utilities: 'Utilities',
+  governance: 'Governance',
+  employment: 'Employment',
+  environment: 'Environment',
+  emergency: 'Emergency',
+};
+
+function getSectorStyle(sector: string) {
+  return sectorColors[sector] ?? { bg: 'bg-surface-cool', text: 'text-ink-muted' };
+}
+---
+
+<Base title="Browse by Department" currentPage="departments">
+  <!-- Heading Section -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="fade-up text-center hero-inner">
+        <div class="hero-icon-wrap">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hero-icon">
+            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+            <line x1="8" y1="21" x2="16" y2="21"></line>
+            <line x1="12" y1="17" x2="12" y2="21"></line>
+          </svg>
+        </div>
+        <h1 class="hero-title">Browse by Department</h1>
+        <p class="hero-subtitle">
+          Explore 30+ government departments of Karnataka. Each department manages a range of public services, schemes, and programs for citizens.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Department Grid -->
+  <section class="content-section">
+    <div class="container">
+      <div class="dept-grid stagger-children">
+        {departments.map((dept) => {
+          const style = getSectorStyle(dept.sector);
+          return (
+            <a
+              href={`/services?department=${dept.id}`}
+              class="dept-card fade-up group"
+            >
+              {/* Top accent */}
+              <div class="card-top-border"></div>
+
+              {/* Department name */}
+              <h3 class="card-title">
+                {dept.name.en}
+              </h3>
+              <p class="card-kn">{dept.name.kn}</p>
+
+              {/* Sector badge + service count */}
+              <div class="card-footer">
+                <span class={`sector-badge ${style.bg} ${style.text}`}>
+                  {sectorLabels[dept.sector] || dept.sector}
+                </span>
+                <span class="service-count">
+                  {dept.service_count} services
+                </span>
+              </div>
+
+              {/* Link indicator */}
+              <span class="card-link-indicator">
+                Browse services
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </span>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* ── Hero ── */
+  .hero-section {
+    padding: 72px 0;
+    background: var(--color-surface-cool);
+  }
+  .hero-inner {
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero-icon-wrap {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+    background: linear-gradient(135deg, #C41E3A, #E74860);
+  }
+  .hero-icon {
+    color: #fff;
+  }
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-ink);
+    letter-spacing: -0.02em;
+  }
+  .hero-subtitle {
+    margin-top: 16px;
+    font-size: 1.125rem;
+    color: var(--color-ink-muted);
+    line-height: 1.6;
+  }
+
+  /* ── Content Section ── */
+  .content-section {
+    padding: 48px 0 72px;
+    background: var(--color-surface);
+  }
+
+  /* ── Grid ── */
+  .dept-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  /* ── Card ── */
+  .dept-card {
+    position: relative;
+    display: block;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border-light);
+    border-radius: 10px;
+    padding: 24px;
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--color-ink);
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .dept-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(26, 26, 46, 0.1), 0 4px 10px rgba(26, 26, 46, 0.04);
+    border-color: var(--color-border);
+    color: var(--color-ink);
+  }
+
+  .card-top-border {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--color-red);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .dept-card:hover .card-top-border { transform: scaleX(1); }
+
+  .card-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-ink);
+    transition: color 0.2s;
+  }
+  .dept-card:hover .card-title { color: var(--color-red); }
+
+  .card-kn {
+    margin-top: 2px;
+    font-size: 0.82rem;
+    color: var(--color-ink-muted);
+  }
+
+  .card-footer {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .sector-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: capitalize;
+  }
+  .service-count {
+    font-size: 0.875rem;
+    color: var(--color-ink-muted);
+    font-weight: 500;
+  }
+
+  .card-link-indicator {
+    margin-top: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--color-red);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .card-link-indicator svg {
+    width: 16px;
+    height: 16px;
+  }
+  .dept-card:hover .card-link-indicator { opacity: 1; }
+
+  /* ── Responsive ── */
+  @media (max-width: 1280px) {
+    .dept-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 1024px) {
+    .dept-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 768px) {
+    .hero-section { padding: 48px 0; }
+    .hero-title { font-size: 2rem; }
+    .content-section { padding: 32px 0 48px; }
+    .dept-grid { grid-template-columns: 1fr; gap: 12px; }
+    .dept-card { padding: 20px; }
+  }
+</style>

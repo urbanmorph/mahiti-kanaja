@@ -1,0 +1,41 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import QuickAccessGrid from '../components/QuickAccessGrid.astro';
+import Pathways from '../components/Pathways.astro';
+import DashboardPreview from '../components/DashboardPreview.astro';
+import SchemesSection from '../components/SchemesSection.astro';
+
+import servicesRaw from '../../data/services.json';
+import schemesRaw from '../../data/schemes.json';
+
+// Transform services to match QuickAccessGrid's expected props
+// QuickAccessGrid expects: { name: string; nameKn?: string; description: string; icon?: string; slug?: string }
+const services = servicesRaw
+  .sort((a, b) => a.popularity - b.popularity)
+  .slice(0, 8)
+  .map((s) => ({
+    name: s.name.en,
+    nameKn: s.name.kn,
+    description: s.description.en,
+    icon: s.icon,
+    slug: s.id,
+  }));
+
+// Transform schemes to match SchemesSection's expected props
+// SchemesSection expects: { name: string; description: string; category: string; slug?: string }
+const schemes = schemesRaw.map((s) => ({
+  name: s.name.en,
+  description: s.description.en,
+  category: s.tag,
+  slug: s.id,
+}));
+---
+
+<Base title="Mahiti Kanaja" currentPage="home">
+  <Hero />
+  <QuickAccessGrid services={services} />
+  <Pathways />
+  <DashboardPreview />
+  <SchemesSection schemes={schemes} />
+</Base>

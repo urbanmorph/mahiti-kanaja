@@ -1,0 +1,193 @@
+---
+// DashboardPreview.astro — "Public Spending Transparency" dashboard preview
+---
+
+<section class="section-block">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="accent-line"></div>
+      <h2>Public Spending Transparency</h2>
+      <p>Real-time data on how Karnataka's public funds are being allocated and utilized.</p>
+    </div>
+
+    <div class="dashboard-grid">
+      <!-- Card 1: Bar Chart -->
+      <div class="dash-card fade-up">
+        <div class="dash-card-title">District-wise Fund Allocation (₹ Cr)</div>
+        <div class="bar-chart">
+          <div class="bar-row">
+            <div class="bar-label">Bengaluru</div>
+            <div class="bar-track"><div class="bar-fill red" style="width:88%"><span>₹4,280 Cr</span></div></div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Mysuru</div>
+            <div class="bar-track"><div class="bar-fill blue" style="width:62%"><span>₹2,940 Cr</span></div></div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Belagavi</div>
+            <div class="bar-track"><div class="bar-fill gold" style="width:51%"><span>₹2,410 Cr</span></div></div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Kalaburagi</div>
+            <div class="bar-track"><div class="bar-fill green" style="width:44%"><span>₹2,080 Cr</span></div></div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Dharwad</div>
+            <div class="bar-track"><div class="bar-fill red" style="width:38%"><span>₹1,790 Cr</span></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Donut Chart -->
+      <div class="dash-card fade-up">
+        <div class="dash-card-title">Pension Disbursements This Quarter</div>
+        <div class="donut-wrap">
+          <div class="donut-chart">
+            <svg viewBox="0 0 140 140" style="width:100%;height:100%;display:block;transform:rotate(-90deg)">
+              <circle cx="70" cy="70" r="55" fill="none" stroke="var(--color-surface-cool)" stroke-width="18"/>
+              <circle cx="70" cy="70" r="55" fill="none" stroke="var(--color-red)" stroke-width="18" stroke-dasharray="155 345" stroke-dashoffset="0"/>
+              <circle cx="70" cy="70" r="55" fill="none" stroke="var(--color-blue)" stroke-width="18" stroke-dasharray="95 345" stroke-dashoffset="-155"/>
+              <circle cx="70" cy="70" r="55" fill="none" stroke="var(--color-gold-muted)" stroke-width="18" stroke-dasharray="60 345" stroke-dashoffset="-250"/>
+              <circle cx="70" cy="70" r="55" fill="none" stroke="var(--color-green)" stroke-width="18" stroke-dasharray="35 345" stroke-dashoffset="-310"/>
+            </svg>
+            <div class="donut-center">
+              <strong>₹892 Cr</strong>
+              <small>Total Q3</small>
+            </div>
+          </div>
+          <div class="donut-legend">
+            <div class="legend-item"><div class="legend-dot" style="background:var(--color-red)"></div>Old Age<div class="legend-val">₹401 Cr</div></div>
+            <div class="legend-item"><div class="legend-dot" style="background:var(--color-blue)"></div>Widow<div class="legend-val">₹246 Cr</div></div>
+            <div class="legend-item"><div class="legend-dot" style="background:var(--color-gold-muted)"></div>Disability<div class="legend-val">₹156 Cr</div></div>
+            <div class="legend-item"><div class="legend-dot" style="background:var(--color-green)"></div>Other<div class="legend-val">₹89 Cr</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Status Breakdown -->
+      <div class="dash-card fade-up">
+        <div class="dash-card-title">Infrastructure Projects — FY 2025-26</div>
+        <div class="status-grid">
+          <div class="status-item completed">
+            <div class="status-num">1,247</div>
+            <div class="status-label">Completed</div>
+          </div>
+          <div class="status-item progress">
+            <div class="status-num">834</div>
+            <div class="status-label">In Progress</div>
+          </div>
+          <div class="status-item planned">
+            <div class="status-num">412</div>
+            <div class="status-label">Planned</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: Scheme Stats -->
+      <div class="dash-card fade-up">
+        <div class="dash-card-title">Top Schemes by Beneficiaries</div>
+        <div class="scheme-stats">
+          <div class="scheme-stat-row"><span class="scheme-stat-name">Anna Bhagya</span><span class="scheme-stat-val">42.8 Lakh</span></div>
+          <div class="scheme-stat-row"><span class="scheme-stat-name">Gruh Jyothi</span><span class="scheme-stat-val">38.1 Lakh</span></div>
+          <div class="scheme-stat-row"><span class="scheme-stat-name">Shakthi Yojane</span><span class="scheme-stat-val">25.6 Lakh</span></div>
+          <div class="scheme-stat-row"><span class="scheme-stat-name">Gruh Lakshmi</span><span class="scheme-stat-val">18.3 Lakh</span></div>
+        </div>
+      </div>
+    </div>
+
+    <a href="/dashboard" class="explore-cta fade-up">
+      Explore Full Dashboard
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</section>
+
+<style>
+  .section-block { padding: 72px 0; }
+  .section-header { margin-bottom: 40px; }
+  .section-header h2 {
+    font-family: var(--font-display); font-size: 1.8rem; font-weight: 600;
+    color: var(--color-ink); letter-spacing: -0.02em; margin-bottom: 8px;
+  }
+  .section-header p { color: var(--color-ink-muted); font-size: 0.95rem; max-width: 560px; }
+
+  .dashboard-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .dash-card {
+    background: var(--color-surface); border: 1px solid var(--color-border);
+    border-radius: 10px; padding: 28px;
+  }
+  .dash-card-title {
+    font-size: 0.78rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.06em; color: var(--color-ink-muted); margin-bottom: 20px;
+  }
+
+  /* Bar chart */
+  .bar-chart { display: flex; flex-direction: column; gap: 10px; }
+  .bar-row { display: flex; align-items: center; gap: 12px; }
+  .bar-label { width: 90px; font-size: 0.78rem; color: var(--color-ink-light); text-align: right; flex-shrink: 0; }
+  .bar-track { flex: 1; height: 24px; background: var(--color-surface-cool); border-radius: 4px; overflow: hidden; }
+  .bar-fill {
+    height: 100%; border-radius: 4px;
+    display: flex; align-items: center; padding-left: 8px;
+  }
+  .bar-fill span { font-size: 0.68rem; font-weight: 600; color: #fff; white-space: nowrap; }
+  .bar-fill.red { background: var(--color-red); }
+  .bar-fill.blue { background: var(--color-blue); }
+  .bar-fill.gold { background: var(--color-gold-muted); }
+  .bar-fill.gold span { color: var(--color-ink); }
+  .bar-fill.green { background: var(--color-green); }
+
+  /* Donut chart */
+  .donut-wrap { display: flex; align-items: center; gap: 28px; }
+  .donut-chart { width: 140px; height: 140px; flex-shrink: 0; position: relative; }
+  .donut-chart :global(svg) { width: 100%; height: 100%; display: block; transform: rotate(-90deg); }
+  .donut-center {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+  }
+  .donut-center strong { font-size: 1.2rem; font-weight: 700; color: var(--color-ink); }
+  .donut-center small { font-size: 0.65rem; color: var(--color-ink-muted); }
+  .donut-legend { display: flex; flex-direction: column; gap: 10px; }
+  .legend-item { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; color: var(--color-ink-light); }
+  .legend-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+  .legend-val { margin-left: auto; font-weight: 600; color: var(--color-ink); }
+
+  /* Status grid */
+  .status-grid { display: flex; gap: 12px; }
+  .status-item {
+    flex: 1; text-align: center; padding: 20px 12px;
+    border-radius: 6px; background: var(--color-surface-cool);
+  }
+  .status-num { font-size: 1.6rem; font-weight: 700; line-height: 1; margin-bottom: 4px; }
+  .status-label { font-size: 0.72rem; color: var(--color-ink-muted); font-weight: 500; }
+  .status-item.completed .status-num { color: var(--color-green); }
+  .status-item.progress .status-num { color: var(--color-blue); }
+  .status-item.planned .status-num { color: var(--color-ink-muted); }
+
+  /* Scheme stats */
+  .scheme-stats { display: flex; flex-direction: column; gap: 12px; }
+  .scheme-stat-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 16px; background: var(--color-surface-cool); border-radius: 6px;
+  }
+  .scheme-stat-name { font-size: 0.82rem; font-weight: 500; color: var(--color-ink-light); }
+  .scheme-stat-val { font-size: 0.92rem; font-weight: 700; color: var(--color-ink); }
+
+  /* CTA */
+  .explore-cta {
+    display: inline-flex; align-items: center; gap: 8px; margin-top: 32px;
+    padding: 12px 28px; background: var(--color-ink); color: #fff;
+    font-size: 0.88rem; font-weight: 600; border-radius: 100px;
+    transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    text-decoration: none;
+  }
+  .explore-cta:hover { background: var(--color-red); color: #fff; gap: 12px; }
+  .explore-cta svg { width: 16px; height: 16px; }
+
+  @media (max-width: 1024px) { .dashboard-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 768px) {
+    .section-block { padding: 48px 0; }
+    .donut-wrap { flex-direction: column; }
+    .status-grid { flex-direction: column; }
+  }
+</style>

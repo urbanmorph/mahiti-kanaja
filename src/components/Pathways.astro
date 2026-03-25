@@ -1,0 +1,137 @@
+---
+// Pathways.astro — "Find Services Your Way" with 3 pathway cards
+---
+
+<section class="section-block section-alt">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="accent-line"></div>
+      <h2>Find Services Your Way</h2>
+      <p>Three ways to discover the information you need — choose what works best for you.</p>
+    </div>
+
+    <div class="pathways-grid">
+      <!-- By Location -->
+      <a href="/explore/by-location" class="pathway-card fade-up">
+        <div class="pathway-icon icon-blue">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+          </svg>
+        </div>
+        <h3>By Location</h3>
+        <p>Drill down from your district to your specific village or ward to see all available services and data.</p>
+        <div class="pathway-steps">
+          <span class="step">District</span><span class="step-arrow">→</span>
+          <span class="step">Taluk</span><span class="step-arrow">→</span>
+          <span class="step">Gram Panchayat</span><span class="step-arrow">→</span>
+          <span class="step">All Services</span>
+        </div>
+      </a>
+
+      <!-- By Department -->
+      <a href="/explore/by-department" class="pathway-card fade-up">
+        <div class="pathway-icon icon-red">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+          </svg>
+        </div>
+        <h3>By Department</h3>
+        <p>Browse all 30+ government departments and access their services, data, and contact information directly.</p>
+        <div class="pathway-steps">
+          <span class="step">Agriculture</span>
+          <span class="step">Health</span>
+          <span class="step">Education</span>
+          <span class="step">Revenue</span>
+          <span class="step">+26 more</span>
+        </div>
+      </a>
+
+      <!-- By Life Event -->
+      <a href="/explore/by-life-event" class="pathway-card fade-up">
+        <div class="pathway-icon icon-gold">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>
+          </svg>
+        </div>
+        <h3>By Life Event</h3>
+        <p>Find relevant services based on what you need right now — from birth registration to retirement benefits.</p>
+        <div class="pathway-steps">
+          <span class="step">Birth</span>
+          <span class="step">Education</span>
+          <span class="step">Employment</span>
+          <span class="step">Housing</span>
+          <span class="step">Retirement</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-block { padding: 72px 0; }
+  .section-alt { background: var(--color-surface); }
+
+  .section-header { margin-bottom: 40px; }
+  .section-header h2 {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--color-ink);
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+  .section-header p { color: var(--color-ink-muted); font-size: 0.95rem; max-width: 560px; }
+
+  .pathways-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .pathway-card {
+    background: var(--color-surface-warm);
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    padding: 32px 28px;
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--color-ink);
+    display: block;
+  }
+  .pathway-card:hover {
+    box-shadow: 0 12px 40px rgba(26,26,46,0.12), 0 4px 12px rgba(26,26,46,0.06);
+    border-color: transparent;
+    transform: translateY(-2px);
+    color: var(--color-ink);
+  }
+
+  .pathway-icon {
+    width: 56px; height: 56px;
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 20px;
+  }
+  .pathway-icon svg { width: 26px; height: 26px; }
+  .icon-blue { background: linear-gradient(135deg, #E0F2FE, #BFDBFE); }
+  .icon-blue svg { stroke: var(--color-blue); }
+  .icon-red { background: linear-gradient(135deg, var(--color-red-light), #F5C6CE); }
+  .icon-red svg { stroke: var(--color-red); }
+  .icon-gold { background: linear-gradient(135deg, var(--color-gold-light), #FDE68A); }
+  .icon-gold svg { stroke: var(--color-amber); }
+
+  .pathway-card h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; }
+  .pathway-card p { font-size: 0.85rem; color: var(--color-ink-muted); line-height: 1.6; margin-bottom: 18px; }
+
+  .pathway-steps { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .step {
+    font-size: 0.72rem; font-weight: 500; color: var(--color-ink-light);
+    background: var(--color-surface-cool); padding: 4px 10px; border-radius: 100px;
+  }
+  .step-arrow { font-size: 0.65rem; color: var(--color-ink-muted); }
+
+  @media (max-width: 768px) {
+    .section-block { padding: 48px 0; }
+    .pathways-grid { grid-template-columns: 1fr; gap: 14px; }
+  }
+</style>

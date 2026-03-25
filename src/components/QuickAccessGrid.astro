@@ -1,0 +1,158 @@
+---
+// QuickAccessGrid.astro — "Most Used Services" grid section
+interface Service {
+  name: string;
+  nameKn?: string;
+  description: string;
+  icon?: string;
+  slug?: string;
+}
+
+interface Props {
+  services: Service[];
+}
+
+const { services } = Astro.props;
+
+const iconPaths: Record<string, string> = {
+  'shield-check': '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/>',
+  'shopping-bag': '<path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>',
+  'file-text': '<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>',
+  'video': '<rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 5.5 20 16.5 16 14"/><circle cx="9" cy="18" r="2"/>',
+  'graduation-cap': '<path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 3.4 3 6 3s6-1 6-3v-5"/>',
+  'clipboard-list': '<rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/>',
+  'award': '<circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>',
+  'home': '<path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>',
+};
+
+function getIconSvg(icon?: string): string {
+  return iconPaths[icon || ''] || iconPaths['file-text'];
+}
+---
+
+<section class="section-block">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="accent-line"></div>
+      <h2>Most Used Services</h2>
+      <p>Quick access to the services citizens use most. No registration or login needed.</p>
+    </div>
+
+    <div class="quick-grid stagger-children">
+      {services.map((service) => (
+        <a href={service.slug ? `/services#${service.slug}` : '#'} class="quick-card fade-up">
+          <div class="card-top-border"></div>
+          <div class="card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <Fragment set:html={getIconSvg(service.icon)} />
+            </svg>
+          </div>
+          <h3>{service.name}</h3>
+          {service.nameKn && <div class="kn-title">{service.nameKn}</div>}
+          <div class="desc">{service.description}</div>
+          <div class="arrow">
+            View details
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-block { padding: 72px 0; }
+
+  .section-header { margin-bottom: 40px; }
+  .section-header h2 {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--color-ink);
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+  .section-header p {
+    color: var(--color-ink-muted);
+    font-size: 0.95rem;
+    max-width: 560px;
+  }
+
+  .quick-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .quick-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 24px 20px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--color-ink);
+    display: block;
+  }
+  .card-top-border {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--color-red);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .quick-card:hover {
+    border-color: transparent;
+    box-shadow: 0 8px 30px rgba(26,26,46,0.14), 0 4px 10px rgba(26,26,46,0.06);
+    transform: translateY(-3px);
+    color: var(--color-ink);
+  }
+  .quick-card:hover .card-top-border { transform: scaleX(1); }
+
+  .card-icon {
+    width: 44px;
+    height: 44px;
+    background: var(--color-red-light);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
+    transition: background 0.3s;
+  }
+  /* :global() needed because set:html content doesn't get Astro scoping attributes */
+  .card-icon :global(svg) {
+    width: 22px;
+    height: 22px;
+    color: var(--color-red);
+    flex-shrink: 0;
+    transition: color 0.3s;
+  }
+  .quick-card:hover .card-icon { background: var(--color-red); }
+  .quick-card:hover .card-icon :global(svg) { color: #fff; }
+
+  h3 { font-size: 0.92rem; font-weight: 600; margin-bottom: 2px; line-height: 1.3; }
+  .kn-title { font-size: 0.78rem; color: var(--color-ink-muted); margin-bottom: 6px; }
+  .desc { font-size: 0.78rem; color: var(--color-ink-muted); line-height: 1.5; margin-bottom: 12px; }
+  .arrow {
+    display: flex; align-items: center; gap: 4px;
+    font-size: 0.78rem; font-weight: 600; color: var(--color-red);
+    transition: gap 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .arrow :global(svg) { width: 14px; height: 14px; flex-shrink: 0; }
+  .quick-card:hover .arrow { gap: 8px; }
+
+  @media (max-width: 1024px) { .quick-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 768px) {
+    .section-block { padding: 48px 0; }
+    .quick-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .quick-card { padding: 18px 16px; }
+  }
+</style>

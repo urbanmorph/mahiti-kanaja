@@ -1,0 +1,353 @@
+---
+import Base from '../../layouts/Base.astro';
+import servicesRaw from '../../../data/services.json';
+
+// Life events with icons, descriptions, and relevant service IDs
+const lifeEvents = [
+  {
+    id: 'birth',
+    title: 'Birth & Registration',
+    description: 'Birth certificates, Aadhaar enrollment, child welfare schemes, and immunization records.',
+    icon: 'baby',
+    color: { gradient: 'from-pink-500 to-rose-500', bg: 'bg-red-light', text: 'text-red' },
+    serviceIds: ['pension-status', 'ration-card', 'ambulance-108', 'compensation-parihara'],
+  },
+  {
+    id: 'education',
+    title: 'Education',
+    description: 'School admissions, scholarships, mid-day meals, and educational institution information.',
+    icon: 'graduation',
+    color: { gradient: 'from-amber-400 to-yellow-500', bg: 'bg-gold-light', text: 'text-amber' },
+    serviceIds: ['school-info', 'scholarship-status', 'ration-card', 'housing-scheme'],
+  },
+  {
+    id: 'employment',
+    title: 'Employment',
+    description: 'Job portals, skill training programs, MGNREGA details, and labor welfare services.',
+    icon: 'briefcase',
+    color: { gradient: 'from-blue-500 to-indigo-500', bg: 'bg-blue-light', text: 'text-blue' },
+    serviceIds: ['pm-kisan', 'loan-waiver', 'village-projects', 'gp-members'],
+  },
+  {
+    id: 'housing',
+    title: 'Housing & Property',
+    description: 'Housing schemes, property tax, land records, building permits, and mutation services.',
+    icon: 'home',
+    color: { gradient: 'from-green-500 to-emerald-500', bg: 'bg-green-light', text: 'text-green' },
+    serviceIds: ['housing-scheme', 'property-tax', 'rtc-land-records', 'water-supply'],
+  },
+  {
+    id: 'health',
+    title: 'Health',
+    description: 'Hospital information, health insurance schemes, ambulance services, and medicine availability.',
+    icon: 'heart',
+    color: { gradient: 'from-red-500 to-red-600', bg: 'bg-red-light', text: 'text-red' },
+    serviceIds: ['ambulance-108', 'pension-status', 'ration-card', 'compensation-parihara'],
+  },
+  {
+    id: 'retirement',
+    title: 'Retirement',
+    description: 'Pension schemes, senior citizen benefits, social security, and old-age welfare programs.',
+    icon: 'sunset',
+    color: { gradient: 'from-orange-400 to-amber-500', bg: 'bg-gold-light', text: 'text-amber' },
+    serviceIds: ['pension-status', 'ration-card', 'housing-scheme', 'ambulance-108'],
+  },
+  {
+    id: 'legal',
+    title: 'Legal',
+    description: 'FIR tracking, legal aid services, RTI requests, court case status, and consumer complaints.',
+    icon: 'scale',
+    color: { gradient: 'from-slate-500 to-gray-600', bg: 'bg-surface-cool', text: 'text-ink-muted' },
+    serviceIds: ['fir-status', 'rtc-land-records', 'compensation-parihara', 'gp-members'],
+  },
+  {
+    id: 'emergency',
+    title: 'Emergency',
+    description: 'Emergency contacts, disaster relief, ambulance services, and fire department information.',
+    icon: 'alert',
+    color: { gradient: 'from-red-600 to-rose-700', bg: 'bg-red-light', text: 'text-red' },
+    serviceIds: ['ambulance-108', 'compensation-parihara', 'fir-status', 'pension-status'],
+  },
+];
+
+// Build lookup map from services
+const servicesMap = new Map(servicesRaw.map((s) => [s.id, s]));
+
+// SVG icon paths by type
+const iconPaths: Record<string, string> = {
+  baby: '<circle cx="12" cy="4" r="2"/><path d="M12 21V14"/><path d="M9 18h6"/><path d="M7 10h10a1 1 0 011 1v1a5 5 0 01-5 5 5 5 0 01-5-5v-1a1 1 0 011-1z"/>',
+  graduation: '<path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.1 2.7 3 6 3s6-1.9 6-3v-5"/>',
+  briefcase: '<rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/>',
+  home: '<path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>',
+  heart: '<path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>',
+  sunset: '<path d="M17 18a5 5 0 00-10 0"/><line x1="12" y1="9" x2="12" y2="2"/><line x1="4.22" y1="10.22" x2="5.64" y2="11.64"/><line x1="1" y1="18" x2="3" y2="18"/><line x1="21" y1="18" x2="23" y2="18"/><line x1="18.36" y1="11.64" x2="19.78" y2="10.22"/><line x1="23" y1="22" x2="1" y2="22"/><polyline points="16 5 12 9 8 5"/>',
+  scale: '<line x1="12" y1="3" x2="12" y2="21"/><polyline points="1 12 5 8 9 12"/><polyline points="15 12 19 8 23 12"/><path d="M5 8v4a4 4 0 004 4"/><path d="M19 8v4a4 4 0 01-4 4"/>',
+  alert: '<polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>',
+};
+
+// Resolve dot color from gradient string
+function getDotColor(gradient: string): string {
+  if (gradient.includes('red')) return '#C41E3A';
+  if (gradient.includes('blue') || gradient.includes('indigo')) return '#2563EB';
+  if (gradient.includes('green') || gradient.includes('emerald')) return '#0D9F6E';
+  if (gradient.includes('amber') || gradient.includes('orange') || gradient.includes('yellow')) return '#F59E0B';
+  if (gradient.includes('slate') || gradient.includes('gray')) return '#64748B';
+  return '#C41E3A';
+}
+---
+
+<Base title="Browse by Life Event">
+  <!-- Heading Section -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="fade-up text-center hero-inner">
+        <div class="hero-icon-wrap">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hero-icon">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </div>
+        <h1 class="hero-title">Browse by Life Event</h1>
+        <p class="hero-subtitle">
+          Find relevant government services based on where you are in life. Select a life event to discover the services, schemes, and information most relevant to your current needs.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Life Events Grid -->
+  <section class="content-section">
+    <div class="container">
+      <div class="events-grid stagger-children">
+        {lifeEvents.map((event) => {
+          const relatedServices = event.serviceIds
+            .map((id) => servicesMap.get(id))
+            .filter(Boolean);
+          const dotColor = getDotColor(event.color.gradient);
+
+          return (
+            <div class="event-card fade-up group">
+              <div class="event-card-inner">
+                {/* Icon + Title */}
+                <div class="event-header">
+                  <div class={`event-icon-wrap bg-gradient-to-br ${event.color.gradient}`}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="event-icon">
+                      <Fragment set:html={iconPaths[event.icon] || iconPaths.heart} />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="event-title">{event.title}</h3>
+                    <p class="event-desc">{event.description}</p>
+                  </div>
+                </div>
+
+                {/* Related Services */}
+                <div class="related-section">
+                  <p class="related-label">Related Services</p>
+                  <div class="related-list">
+                    {relatedServices.slice(0, 4).map((service) => (
+                      <a
+                        href={service!.url}
+                        class="related-link"
+                        target={service!.external ? '_blank' : undefined}
+                        rel={service!.external ? 'noopener noreferrer' : undefined}
+                      >
+                        <div class="related-dot" style={`background: ${dotColor}`}></div>
+                        <div class="related-text">
+                          <span class="related-name">
+                            {service!.name.en}
+                          </span>
+                          <span class="related-kn">{service!.name.kn}</span>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="related-arrow">
+                          <line x1="5" y1="12" x2="19" y2="12"></line>
+                          <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* ── Hero ── */
+  .hero-section {
+    padding: 72px 0;
+    background: var(--color-surface-cool);
+  }
+  .hero-inner {
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero-icon-wrap {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+    background: linear-gradient(135deg, #FFD700, #F5C518);
+  }
+  .hero-icon {
+    color: var(--color-ink);
+  }
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-ink);
+    letter-spacing: -0.02em;
+  }
+  .hero-subtitle {
+    margin-top: 16px;
+    font-size: 1.125rem;
+    color: var(--color-ink-muted);
+    line-height: 1.6;
+  }
+
+  /* ── Content Section ── */
+  .content-section {
+    padding: 48px 0 72px;
+    background: var(--color-surface);
+  }
+
+  /* ── Grid ── */
+  .events-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  /* ── Event Card ── */
+  .event-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border-light);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .event-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(26, 26, 46, 0.1), 0 4px 10px rgba(26, 26, 46, 0.04);
+  }
+
+  .event-card-inner {
+    padding: 28px;
+  }
+
+  .event-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .event-icon-wrap {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  /* :global() needed because set:html (Fragment) injects SVG children without Astro scoping */
+  .event-icon-wrap :global(svg) {
+    width: 24px;
+    height: 24px;
+    color: #fff;
+    flex-shrink: 0;
+  }
+
+  .event-title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-ink);
+  }
+  .event-desc {
+    margin-top: 4px;
+    font-size: 0.875rem;
+    color: var(--color-ink-muted);
+    line-height: 1.6;
+  }
+
+  /* ── Related Services ── */
+  .related-section {
+    margin-top: 20px;
+  }
+  .related-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--color-ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 12px;
+  }
+  .related-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .related-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    border-radius: 8px;
+    background: var(--color-surface-cool);
+    text-decoration: none;
+    color: var(--color-ink);
+    transition: background 0.2s;
+  }
+  .related-link:hover {
+    background: var(--color-surface-warm);
+    color: var(--color-ink);
+  }
+
+  .related-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 9999px;
+    flex-shrink: 0;
+  }
+  .related-text {
+    flex: 1;
+    min-width: 0;
+  }
+  .related-name {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-ink);
+    transition: color 0.2s;
+  }
+  .related-link:hover .related-name { color: var(--color-red); }
+  .related-kn {
+    margin-left: 8px;
+    font-size: 0.75rem;
+    color: var(--color-ink-muted);
+  }
+  .related-arrow {
+    color: var(--color-ink-muted);
+    flex-shrink: 0;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .hero-section { padding: 48px 0; }
+    .hero-title { font-size: 2rem; }
+    .content-section { padding: 32px 0 48px; }
+    .events-grid { grid-template-columns: 1fr; gap: 16px; }
+    .event-card-inner { padding: 20px; }
+  }
+</style>

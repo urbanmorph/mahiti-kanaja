@@ -1,0 +1,385 @@
+---
+import Base from '../../layouts/Base.astro';
+import servicesRaw from '../../../data/services.json';
+
+// Get unique sectors for filter buttons
+const allSectors = [...new Set(servicesRaw.map((s) => s.sector))];
+
+// Sector display names
+const sectorLabels: Record<string, string> = {
+  welfare: 'Welfare',
+  food: 'Food',
+  'law-order': 'Law & Order',
+  transport: 'Transport',
+  education: 'Education',
+  infrastructure: 'Infrastructure',
+  revenue: 'Revenue',
+  agriculture: 'Agriculture',
+  housing: 'Housing',
+  utilities: 'Utilities',
+  governance: 'Governance',
+  health: 'Health',
+  employment: 'Employment',
+  environment: 'Environment',
+  emergency: 'Emergency',
+  urban: 'Urban',
+};
+
+// Department display names
+const departmentLabels: Record<string, string> = {
+  'social-welfare': 'Social Welfare',
+  'food-civil-supplies': 'Food & Civil Supplies',
+  police: 'Police',
+  transport: 'Transport',
+  education: 'Education',
+  'rural-development': 'Rural Development',
+  agriculture: 'Agriculture',
+  health: 'Health',
+  revenue: 'Revenue',
+  housing: 'Housing',
+  'urban-development': 'Urban Development',
+  'water-resources': 'Water Resources',
+  energy: 'Energy',
+  'panchayat-raj': 'Panchayat Raj',
+};
+
+// Sort by popularity
+const services = servicesRaw.sort((a, b) => a.popularity - b.popularity);
+---
+
+<Base title="All Services" currentPage="services">
+  <!-- Heading Section -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="fade-up text-center hero-inner">
+        <h1 class="hero-title">All Services</h1>
+        <p class="hero-subtitle">
+          Browse 450+ government services available to citizens of Karnataka. Use the filters below to narrow by sector.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filter Bar -->
+  <section class="filter-bar-section">
+    <div class="container">
+      <div class="flex flex-wrap gap-2 justify-center" id="filter-bar">
+        <button
+          data-filter="all"
+          class="filter-btn active"
+        >
+          All
+        </button>
+        {allSectors.map((sector) => (
+          <button
+            data-filter={sector}
+            class="filter-btn"
+          >
+            {sectorLabels[sector] || sector}
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Grid -->
+  <section class="content-section">
+    <div class="container">
+      <div class="services-grid" id="services-grid">
+        {services.map((service) => (
+          <div
+            class="service-card fade-up group"
+            data-sector={service.sector}
+          >
+            {/* Top accent */}
+            <div class="card-top-border"></div>
+
+            {/* Icon area */}
+            <div class="card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+              </svg>
+            </div>
+
+            {/* Service name */}
+            <h3 class="card-title">
+              {service.name.en}
+            </h3>
+
+            {/* Kannada name */}
+            <p class="card-kn">{service.name.kn}</p>
+
+            {/* Description */}
+            <p class="card-desc">
+              {service.description.en}
+            </p>
+
+            {/* Department badge + external indicator */}
+            <div class="card-meta">
+              <span class="dept-badge">
+                {departmentLabels[service.department] || service.department}
+              </span>
+              {service.external && (
+                <span class="external-badge">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                    <polyline points="15 3 21 3 21 9"></polyline>
+                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                  </svg>
+                  External
+                </span>
+              )}
+            </div>
+
+            {/* Link */}
+            <a href={service.url} class="card-link"
+               target={service.external ? '_blank' : undefined}
+               rel={service.external ? 'noopener noreferrer' : undefined}>
+              View details
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const filterBar = document.getElementById('filter-bar');
+      const cards = document.querySelectorAll('.service-card');
+
+      if (!filterBar) return;
+
+      filterBar.addEventListener('click', (e) => {
+        const btn = (e.target as HTMLElement).closest('.filter-btn') as HTMLButtonElement | null;
+        if (!btn) return;
+
+        const filter = btn.dataset.filter;
+
+        // Update active button styles
+        filterBar.querySelectorAll('.filter-btn').forEach((b) => {
+          b.classList.remove('active');
+        });
+        btn.classList.add('active');
+
+        // Show/hide cards
+        cards.forEach((card) => {
+          const el = card as HTMLElement;
+          if (filter === 'all' || el.dataset.sector === filter) {
+            el.style.display = '';
+          } else {
+            el.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+</Base>
+
+<style>
+  /* ── Hero ── */
+  .hero-section {
+    padding: 72px 0;
+    background: var(--color-surface-cool);
+  }
+  .hero-inner {
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-ink);
+    letter-spacing: -0.02em;
+  }
+  .hero-subtitle {
+    margin-top: 16px;
+    font-size: 1.125rem;
+    color: var(--color-ink-muted);
+    line-height: 1.6;
+  }
+
+  /* ── Filter Bar ── */
+  .filter-bar-section {
+    padding: 20px 0;
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border-light);
+    position: sticky;
+    top: 0;
+    z-index: 20;
+  }
+  .filter-btn {
+    padding: 8px 16px;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border: 1px solid var(--color-border-light);
+    background: var(--color-surface);
+    color: var(--color-ink-muted);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .filter-btn:hover {
+    border-color: var(--color-ink);
+    color: var(--color-ink);
+  }
+  .filter-btn.active {
+    background: var(--color-ink);
+    color: #fff;
+    border-color: var(--color-ink);
+  }
+
+  /* ── Content Section ── */
+  .content-section {
+    padding: 48px 0 72px;
+    background: var(--color-surface);
+  }
+
+  /* ── Services Grid ── */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  /* ── Service Card ── */
+  .service-card {
+    position: relative;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border-light);
+    border-radius: 10px;
+    padding: 24px;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .service-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(26, 26, 46, 0.1), 0 4px 10px rgba(26, 26, 46, 0.04);
+    border-color: var(--color-border);
+  }
+
+  .card-top-border {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--color-red);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .service-card:hover .card-top-border { transform: scaleX(1); }
+
+  .card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    background: var(--color-red-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    transition: background 0.3s;
+  }
+  .card-icon svg {
+    color: var(--color-red);
+    transition: color 0.3s;
+  }
+  .service-card:hover .card-icon {
+    background: var(--color-red);
+  }
+  .service-card:hover .card-icon svg {
+    color: #fff;
+  }
+
+  .card-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-ink);
+    transition: color 0.2s;
+  }
+  .service-card:hover .card-title { color: var(--color-red); }
+
+  .card-kn {
+    margin-top: 2px;
+    font-size: 0.82rem;
+    color: var(--color-ink-muted);
+  }
+  .card-desc {
+    margin-top: 8px;
+    font-size: 0.82rem;
+    color: var(--color-ink-muted);
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .card-meta {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .dept-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 9999px;
+    background: var(--color-surface-cool);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--color-ink-muted);
+  }
+  .external-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.75rem;
+    color: var(--color-ink-muted);
+  }
+  .external-badge svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .card-link {
+    margin-top: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--color-red);
+    text-decoration: none;
+    transition: gap 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .card-link svg {
+    width: 16px;
+    height: 16px;
+  }
+  .service-card:hover .card-link { gap: 8px; }
+
+  /* ── Responsive ── */
+  @media (max-width: 1280px) {
+    .services-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 1024px) {
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 768px) {
+    .hero-section { padding: 48px 0; }
+    .hero-title { font-size: 2rem; }
+    .content-section { padding: 32px 0 48px; }
+    .services-grid { grid-template-columns: 1fr; gap: 12px; }
+    .service-card { padding: 20px; }
+  }
+</style>

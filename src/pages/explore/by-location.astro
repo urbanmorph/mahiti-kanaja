@@ -1,0 +1,268 @@
+---
+import Base from '../../layouts/Base.astro';
+
+// Karnataka's 31 districts
+const districts = [
+  'Bagalkote', 'Ballari', 'Belagavi', 'Bengaluru Rural', 'Bengaluru Urban',
+  'Bidar', 'Chamarajanagara', 'Chikkaballapura', 'Chikkamagaluru', 'Chitradurga',
+  'Dakshina Kannada', 'Davanagere', 'Dharwad', 'Gadag', 'Hassan',
+  'Haveri', 'Kalaburagi', 'Kodagu', 'Kolar', 'Koppal',
+  'Mandya', 'Mysuru', 'Raichur', 'Ramanagara', 'Shivamogga',
+  'Tumakuru', 'Udupi', 'Uttara Kannada', 'Vijayanagara', 'Vijayapura', 'Yadgir',
+];
+---
+
+<Base title="Browse by Location">
+  <!-- Heading Section -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="fade-up text-center hero-inner">
+        <div class="hero-icon-wrap">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hero-icon">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+        </div>
+        <h1 class="hero-title">Browse by Location</h1>
+        <p class="hero-subtitle">
+          Discover government services available in your area. Start by selecting your district, then drill down through the administrative hierarchy to find services relevant to you.
+        </p>
+
+        <!-- Location hierarchy -->
+        <div class="hierarchy">
+          <span class="hierarchy-pill">District</span>
+          <span class="hierarchy-arrow">&rarr;</span>
+          <span class="hierarchy-pill">Taluk</span>
+          <span class="hierarchy-arrow">&rarr;</span>
+          <span class="hierarchy-pill">Hobli</span>
+          <span class="hierarchy-arrow">&rarr;</span>
+          <span class="hierarchy-pill">Gram Panchayat</span>
+          <span class="hierarchy-arrow">&rarr;</span>
+          <span class="hierarchy-pill">Village</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Districts Grid -->
+  <section class="content-section">
+    <div class="container">
+      <div class="fade-up section-header">
+        <h2 class="section-title">All 31 Districts of Karnataka</h2>
+        <p class="section-subtitle">Select a district to view available services and schemes in your area.</p>
+      </div>
+
+      <div class="districts-grid stagger-children">
+        {districts.map((district) => (
+          <a
+            href="#"
+            class="district-card fade-up group"
+          >
+            <div class="district-inner">
+              {/* Pin icon */}
+              <div class="pin-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+              </div>
+
+              <div class="district-text">
+                <h3 class="district-name">
+                  {district}
+                </h3>
+                <span class="district-link">
+                  View services
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* ── Hero ── */
+  .hero-section {
+    padding: 72px 0;
+    background: var(--color-surface-cool);
+  }
+  .hero-inner {
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero-icon-wrap {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+    background: linear-gradient(135deg, #2563EB, #3B82F6);
+  }
+  .hero-icon {
+    color: #fff;
+  }
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-ink);
+    letter-spacing: -0.02em;
+  }
+  .hero-subtitle {
+    margin-top: 16px;
+    font-size: 1.125rem;
+    color: var(--color-ink-muted);
+    line-height: 1.6;
+  }
+
+  /* ── Hierarchy pills ── */
+  .hierarchy {
+    margin-top: 32px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+  .hierarchy-pill {
+    padding: 8px 16px;
+    border-radius: 9999px;
+    background: var(--color-blue-light);
+    color: var(--color-blue);
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+  .hierarchy-arrow {
+    color: var(--color-ink-muted);
+    display: flex;
+    align-items: center;
+  }
+
+  /* ── Content Section ── */
+  .content-section {
+    padding: 48px 0 72px;
+    background: var(--color-surface);
+  }
+
+  .section-header { margin-bottom: 32px; }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-ink);
+  }
+  .section-subtitle {
+    margin-top: 8px;
+    color: var(--color-ink-muted);
+    font-size: 0.95rem;
+  }
+
+  /* ── Grid ── */
+  .districts-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+  }
+
+  /* ── Card ── */
+  .district-card {
+    display: block;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border-light);
+    border-radius: 10px;
+    padding: 20px;
+    text-decoration: none;
+    color: var(--color-ink);
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .district-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(37, 99, 235, 0.08);
+    border-color: rgba(37, 99, 235, 0.2);
+    color: var(--color-ink);
+  }
+
+  .district-inner {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .pin-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: var(--color-blue-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.3s;
+  }
+  .pin-icon svg {
+    color: var(--color-blue);
+    transition: color 0.3s;
+  }
+  .district-card:hover .pin-icon {
+    background: var(--color-blue);
+  }
+  .district-card:hover .pin-icon svg {
+    color: #fff;
+  }
+
+  .district-text {
+    flex: 1;
+    min-width: 0;
+  }
+  .district-name {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-ink);
+    transition: color 0.2s;
+  }
+  .district-card:hover .district-name { color: var(--color-blue); }
+
+  .district-link {
+    margin-top: 4px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--color-blue);
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+  .district-link svg {
+    width: 12px;
+    height: 12px;
+  }
+  .district-card:hover .district-link { opacity: 1; }
+
+  /* ── Responsive ── */
+  @media (max-width: 1280px) {
+    .districts-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+  @media (max-width: 1024px) {
+    .districts-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 768px) {
+    .hero-section { padding: 48px 0; }
+    .hero-title { font-size: 2rem; }
+    .content-section { padding: 32px 0 48px; }
+    .districts-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .district-card { padding: 16px; }
+  }
+  @media (max-width: 480px) {
+    .districts-grid { grid-template-columns: 1fr; }
+  }
+</style>

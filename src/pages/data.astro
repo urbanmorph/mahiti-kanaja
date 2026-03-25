@@ -1,0 +1,315 @@
+---
+import Base from '../layouts/Base.astro';
+import servicesRaw from '../../data/services.json';
+import departmentsRaw from '../../data/departments.json';
+import schemesRaw from '../../data/schemes.json';
+import spendingRaw from '../../data/spending.json';
+
+const datasets = [
+  {
+    id: 'services',
+    name: 'Service Catalog',
+    file: 'services.json',
+    records: servicesRaw.length,
+    size: '12.6 KB',
+    description: 'All government services cataloged with bilingual names, department mapping, sector classification, external links, popularity ranking, and life event tags.',
+    fields: ['id', 'name.en', 'name.kn', 'description.en', 'description.kn', 'department', 'sector', 'url', 'external', 'popularity', 'life_events[]', 'tags[]', 'icon'],
+    sample: JSON.stringify(servicesRaw[0], null, 2),
+  },
+  {
+    id: 'departments',
+    name: 'Departments',
+    file: 'departments.json',
+    records: departmentsRaw.length,
+    size: '4.9 KB',
+    description: 'Karnataka government departments with bilingual names, sector classification, and service counts.',
+    fields: ['id', 'name.en', 'name.kn', 'sector', 'service_count'],
+    sample: JSON.stringify(departmentsRaw[0], null, 2),
+  },
+  {
+    id: 'schemes',
+    name: 'Government Schemes',
+    file: 'schemes.json',
+    records: schemesRaw.length,
+    size: '3.1 KB',
+    description: 'Active welfare schemes with bilingual descriptions, category tags, beneficiary counts, and budget allocations.',
+    fields: ['id', 'name.en', 'name.kn', 'description.en', 'description.kn', 'tag', 'beneficiaries', 'budget_cr'],
+    sample: JSON.stringify(schemesRaw[0], null, 2),
+  },
+  {
+    id: 'spending',
+    name: 'Public Spending',
+    file: 'spending.json',
+    records: `${spendingRaw.district_allocation.length} districts, ${spendingRaw.pension_disbursement.breakdown.length} pension categories, ${spendingRaw.top_schemes.length} schemes`,
+    size: '1.6 KB',
+    description: 'Aggregated public spending data: district-wise fund allocation (allocated/released/utilized), pension disbursement breakdown by type, infrastructure project status counts, and top scheme beneficiary numbers.',
+    fields: ['district_allocation[].district', 'district_allocation[].allocated', 'district_allocation[].released', 'district_allocation[].utilized', 'pension_disbursement.total_cr', 'pension_disbursement.breakdown[].type', 'pension_disbursement.breakdown[].amount_cr', 'infrastructure_projects.completed', 'infrastructure_projects.in_progress', 'infrastructure_projects.planned', 'top_schemes[].name', 'top_schemes[].beneficiaries_lakh'],
+    sample: JSON.stringify({ district_allocation: spendingRaw.district_allocation[0], pension_disbursement: { total_cr: spendingRaw.pension_disbursement.total_cr, quarter: spendingRaw.pension_disbursement.quarter, breakdown: [spendingRaw.pension_disbursement.breakdown[0]] } }, null, 2),
+  },
+];
+
+const baseUrl = 'https://raw.githubusercontent.com/urbanmorph/mahiti-kanaja/main/data';
+const lastUpdated = '2026-03-25';
+---
+
+<Base title="Data" currentPage="data">
+  <div class="data-page">
+    <div class="container">
+      <header class="page-header">
+        <h1>Data</h1>
+        <p>All datasets are static JSON files served from the GitHub repo. No API key required. No rate limits. Fetch directly or clone the repo.</p>
+        <div class="meta">
+          <span>Format: <code>JSON</code></span>
+          <span>License: <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a></span>
+          <span>Last updated: <code>{lastUpdated}</code></span>
+          <span>Source: <a href="https://mahitikanaja.karnataka.gov.in" target="_blank" rel="noopener">mahitikanaja.karnataka.gov.in</a></span>
+        </div>
+      </header>
+
+      <section class="quick-start">
+        <h2>Quick start</h2>
+        <pre><code>{`# Fetch all services
+curl ${baseUrl}/services.json
+
+# Fetch with jq
+curl -s ${baseUrl}/spending.json | jq '.district_allocation[] | {district, allocated}'
+
+# Clone the repo
+git clone https://github.com/urbanmorph/mahiti-kanaja.git
+ls mahiti-kanaja/data/`}</code></pre>
+      </section>
+
+      <section class="endpoints">
+        <h2>Datasets</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Dataset</th>
+              <th>File</th>
+              <th>Records</th>
+              <th>Size</th>
+              <th>URL</th>
+            </tr>
+          </thead>
+          <tbody>
+            {datasets.map((ds) => (
+              <tr>
+                <td><a href={`#${ds.id}`}>{ds.name}</a></td>
+                <td><code>{ds.file}</code></td>
+                <td>{ds.records}</td>
+                <td>{ds.size}</td>
+                <td><a href={`${baseUrl}/${ds.file}`} target="_blank" rel="noopener"><code>GET /{ds.file}</code></a></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
+
+      {datasets.map((ds) => (
+        <section class="dataset" id={ds.id}>
+          <h2>{ds.name} <code class="filename">{ds.file}</code></h2>
+          <p class="ds-desc">{ds.description}</p>
+
+          <h3>Fields</h3>
+          <div class="fields">
+            {ds.fields.map((f) => <code>{f}</code>)}
+          </div>
+
+          <h3>Endpoint</h3>
+          <pre><code>{`GET ${baseUrl}/${ds.file}`}</code></pre>
+
+          <h3>Sample record</h3>
+          <pre><code>{ds.sample}</code></pre>
+        </section>
+      ))}
+
+      <section class="notes">
+        <h2>Notes</h2>
+        <ul>
+          <li>Data is scraped from public government portals and manually verified. It may lag the source by up to 7 days.</li>
+          <li>All monetary values in <code>spending.json</code> are in ₹ Crores unless otherwise noted.</li>
+          <li>Bilingual fields use <code>.en</code> (English) and <code>.kn</code> (Kannada) sub-keys.</li>
+          <li><code>services[].external</code> — if <code>true</code>, the URL points to an external portal (Seva Sindhu, ahara.kar.nic.in, etc.) rather than Mahiti Kanaja.</li>
+          <li>To suggest corrections or contribute data, open an issue at <a href="https://github.com/urbanmorph/mahiti-kanaja/issues" target="_blank" rel="noopener">github.com/urbanmorph/mahiti-kanaja/issues</a>.</li>
+        </ul>
+      </section>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .data-page {
+    padding: 48px 0 72px;
+    font-family: var(--font-body);
+    color: var(--color-ink);
+  }
+
+  .page-header {
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .page-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: -0.03em;
+  }
+  .page-header p {
+    color: var(--color-ink-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    max-width: 720px;
+    margin-bottom: 16px;
+  }
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    font-size: 0.82rem;
+    color: var(--color-ink-muted);
+  }
+  .meta a { color: var(--color-blue); }
+
+  h2 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+  }
+  h3 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 20px 0 8px;
+  }
+
+  code {
+    font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+    font-size: 0.82em;
+    background: var(--color-surface-cool);
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: var(--color-ink-light);
+  }
+  a code { background: none; padding: 0; color: var(--color-blue); }
+
+  pre {
+    background: var(--color-ink);
+    color: #e0e0e0;
+    padding: 16px 20px;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-size: 0.82rem;
+    line-height: 1.6;
+    margin-bottom: 8px;
+  }
+  pre code {
+    background: none;
+    padding: 0;
+    color: inherit;
+    font-size: inherit;
+  }
+
+  .quick-start {
+    margin-bottom: 48px;
+  }
+
+  /* Endpoints table */
+  .endpoints {
+    margin-bottom: 48px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+  }
+  th {
+    text-align: left;
+    font-weight: 600;
+    color: var(--color-ink-muted);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 8px 12px 8px 0;
+    border-bottom: 2px solid var(--color-border);
+  }
+  td {
+    padding: 12px 12px 12px 0;
+    border-bottom: 1px solid var(--color-border-light);
+    vertical-align: top;
+  }
+  td a { color: var(--color-blue); }
+  td a:hover { color: var(--color-red); }
+
+  /* Individual dataset sections */
+  .dataset {
+    margin-bottom: 48px;
+    padding-top: 32px;
+    border-top: 1px solid var(--color-border-light);
+  }
+  .dataset h2 { display: flex; align-items: center; gap: 12px; }
+  .filename {
+    font-size: 0.72rem;
+    background: var(--color-surface-cool);
+    padding: 3px 8px;
+    border-radius: 4px;
+    color: var(--color-ink-muted);
+    font-weight: 500;
+  }
+  .ds-desc {
+    color: var(--color-ink-muted);
+    font-size: 0.88rem;
+    line-height: 1.6;
+    max-width: 720px;
+  }
+
+  .fields {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .fields code {
+    font-size: 0.78rem;
+    background: var(--color-surface-cool);
+    border: 1px solid var(--color-border-light);
+    padding: 3px 8px;
+    border-radius: 4px;
+    color: var(--color-ink-light);
+  }
+
+  /* Notes */
+  .notes {
+    padding-top: 32px;
+    border-top: 1px solid var(--color-border-light);
+  }
+  .notes ul {
+    list-style: none;
+    padding: 0;
+  }
+  .notes li {
+    font-size: 0.88rem;
+    color: var(--color-ink-muted);
+    line-height: 1.6;
+    padding: 6px 0;
+    padding-left: 16px;
+    position: relative;
+  }
+  .notes li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--color-border);
+  }
+  .notes a { color: var(--color-blue); }
+
+  @media (max-width: 768px) {
+    .data-page { padding: 32px 0 48px; }
+    .meta { flex-direction: column; gap: 6px; }
+    table { font-size: 0.8rem; }
+    th, td { padding: 8px 8px 8px 0; }
+    .dataset h2 { flex-direction: column; align-items: flex-start; gap: 4px; }
+  }
+</style>
