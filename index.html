@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ಮಾಹಿತಿ ಕಣಜ | Mahiti Kanaja — Karnataka Public Information Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════
+   DESIGN SYSTEM — "Democratic Precision"
+   ═══════════════════════════════════════════════ */
+:root {
+  --red: #C41E3A;
+  --red-dark: #9B1830;
+  --red-light: #F8E8EB;
+  --gold: #FFD700;
+  --gold-muted: #F5C518;
+  --gold-light: #FFF9E0;
+  --ink: #1A1A2E;
+  --ink-light: #3D3D56;
+  --ink-muted: #6B6B80;
+  --surface: #FFFFFF;
+  --surface-warm: #FAFAF8;
+  --surface-cool: #F4F5F7;
+  --surface-elevated: #FFFFFF;
+  --border: #E8E8ED;
+  --border-light: #F0F0F4;
+  --blue: #2563EB;
+  --blue-light: #EFF6FF;
+  --green: #0D9F6E;
+  --green-light: #ECFDF5;
+  --amber: #D97706;
+  --shadow-sm: 0 1px 3px rgba(26,26,46,0.06), 0 1px 2px rgba(26,26,46,0.04);
+  --shadow-md: 0 4px 16px rgba(26,26,46,0.08), 0 2px 4px rgba(26,26,46,0.04);
+  --shadow-lg: 0 12px 40px rgba(26,26,46,0.12), 0 4px 12px rgba(26,26,46,0.06);
+  --shadow-hover: 0 8px 30px rgba(26,26,46,0.14), 0 4px 10px rgba(26,26,46,0.06);
+  --radius: 10px;
+  --radius-sm: 6px;
+  --radius-lg: 16px;
+  --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --max-w: 1200px;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--surface-warm);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a { color: var(--blue); text-decoration: none; transition: color 0.2s var(--ease); }
+a:hover { color: var(--red); }
+
+.container { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+
+/* ─── TOP UTILITY BAR ─── */
+.top-bar {
+  background: var(--ink);
+  color: rgba(255,255,255,0.85);
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+  position: relative;
+  z-index: 100;
+}
+.top-bar .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 38px;
+  gap: 16px;
+}
+.top-bar-left, .top-bar-right { display: flex; align-items: center; gap: 16px; }
+.top-bar a { color: rgba(255,255,255,0.85); font-size: 0.8rem; }
+.top-bar a:hover { color: var(--gold); }
+.lang-toggle {
+  display: flex;
+  background: rgba(255,255,255,0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.lang-toggle button {
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.6);
+  padding: 3px 10px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition: all 0.2s;
+}
+.lang-toggle button.active {
+  background: rgba(255,255,255,0.18);
+  color: #fff;
+}
+.a11y-controls { display: flex; gap: 4px; }
+.a11y-btn {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.7);
+  width: 26px;
+  height: 26px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.7rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+.a11y-btn:hover { background: rgba(255,255,255,0.15); color: #fff; }
+.helpline { display: flex; align-items: center; gap: 6px; }
+.helpline svg { width: 13px; height: 13px; opacity: 0.7; }
+
+/* ─── HEADER ─── */
+.header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 90;
+  box-shadow: 0 1px 8px rgba(26,26,46,0.04);
+}
+.header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+  gap: 24px;
+}
+.header-brand { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
+.emblem {
+  width: 46px;
+  height: 46px;
+  background: var(--red);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+.emblem::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border: 1.5px solid rgba(255,255,255,0.3);
+  border-radius: 50%;
+}
+.emblem svg { width: 24px; height: 24px; fill: white; }
+.brand-text { line-height: 1.2; }
+.brand-text .kn { font-size: 1rem; font-weight: 600; color: var(--red); letter-spacing: -0.01em; }
+.brand-text .en { font-size: 0.72rem; color: var(--ink-muted); font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; }
+
+.search-bar {
+  flex: 1;
+  max-width: 520px;
+  position: relative;
+}
+.search-bar input {
+  width: 100%;
+  height: 44px;
+  border: 2px solid var(--border);
+  border-radius: 22px;
+  padding: 0 44px 0 20px;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--ink);
+  background: var(--surface-cool);
+  transition: all 0.25s var(--ease);
+  outline: none;
+}
+.search-bar input::placeholder { color: var(--ink-muted); }
+.search-bar input:focus {
+  border-color: var(--red);
+  background: var(--surface);
+  box-shadow: 0 0 0 4px var(--red-light);
+}
+.search-bar button {
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  width: 36px;
+  height: 36px;
+  background: var(--red);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.search-bar button:hover { background: var(--red-dark); }
+.search-bar button svg { width: 16px; height: 16px; stroke: white; }
+
+.header-nav { display: flex; gap: 6px; flex-shrink: 0; }
+.header-nav a {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--ink-light);
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+.header-nav a:hover { color: var(--red); background: var(--red-light); }
+
+/* ─── HERO ─── */
+.hero {
+  background: linear-gradient(135deg, var(--ink) 0%, #2D2D48 50%, #1E1E38 100%);
+  position: relative;
+  overflow: hidden;
+  padding: 72px 0 64px;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(196,30,58,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  left: -10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(255,215,0,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+/* geometric pattern overlay */
+.hero-pattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  background-image:
+    linear-gradient(30deg, #fff 12%, transparent 12.5%, transparent 87%, #fff 87.5%, #fff),
+    linear-gradient(150deg, #fff 12%, transparent 12.5%, transparent 87%, #fff 87.5%, #fff),
+    linear-gradient(30deg, #fff 12%, transparent 12.5%, transparent 87%, #fff 87.5%, #fff),
+    linear-gradient(150deg, #fff 12%, transparent 12.5%, transparent 87%, #fff 87.5%, #fff),
+    linear-gradient(60deg, rgba(255,255,255,0.6) 25%, transparent 25.5%, transparent 75%, rgba(255,255,255,0.6) 75%),
+    linear-gradient(60deg, rgba(255,255,255,0.6) 25%, transparent 25.5%, transparent 75%, rgba(255,255,255,0.6) 75%);
+  background-size: 40px 70px;
+  background-position: 0 0, 0 0, 20px 35px, 20px 35px, 0 0, 20px 35px;
+}
+.hero .container { position: relative; z-index: 2; }
+.hero-content { max-width: 680px; }
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+.hero h1 span { color: var(--gold); }
+.hero p {
+  color: rgba(255,255,255,0.7);
+  font-size: 1.05rem;
+  max-width: 500px;
+  margin-bottom: 32px;
+  line-height: 1.7;
+}
+.trust-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 8px 16px;
+  border-radius: 100px;
+  margin-bottom: 40px;
+}
+.trust-badge svg { width: 16px; height: 16px; stroke: var(--green); flex-shrink: 0; }
+.trust-badge span { font-size: 0.82rem; color: rgba(255,255,255,0.8); }
+
+.stats-row {
+  display: flex;
+  gap: 48px;
+}
+.stat-item { text-align: left; }
+.stat-num {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.stat-num .counter { display: inline-block; }
+.stat-label {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+}
+/* gold accent line under each stat */
+.stat-item::after {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 2px;
+  background: var(--gold);
+  margin-top: 10px;
+  opacity: 0.5;
+}
+
+/* ─── SECTION COMMONS ─── */
+.section { padding: 72px 0; }
+.section-alt { background: var(--surface); }
+.section-header {
+  margin-bottom: 40px;
+}
+.section-header h2 {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+.section-header p {
+  color: var(--ink-muted);
+  font-size: 0.95rem;
+  max-width: 560px;
+}
+.section-header .accent-line {
+  width: 40px;
+  height: 3px;
+  background: var(--red);
+  border-radius: 2px;
+  margin-bottom: 16px;
+}
+
+/* ─── QUICK ACCESS GRID ─── */
+.quick-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.quick-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px 20px;
+  cursor: pointer;
+  transition: all 0.3s var(--ease);
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--ink);
+  display: block;
+}
+.quick-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--red);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s var(--ease);
+}
+.quick-card:hover {
+  border-color: transparent;
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-3px);
+  color: var(--ink);
+}
+.quick-card:hover::before { transform: scaleX(1); }
+.quick-card-icon {
+  width: 44px;
+  height: 44px;
+  background: var(--red-light);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+  transition: background 0.3s;
+}
+.quick-card:hover .quick-card-icon { background: var(--red); }
+.quick-card-icon svg {
+  width: 22px;
+  height: 22px;
+  stroke: var(--red);
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke 0.3s;
+}
+.quick-card:hover .quick-card-icon svg { stroke: #fff; }
+.quick-card h3 {
+  font-size: 0.92rem;
+  font-weight: 600;
+  margin-bottom: 2px;
+  line-height: 1.3;
+}
+.quick-card .kn-title {
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+  margin-bottom: 6px;
+}
+.quick-card .desc {
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+.quick-card .arrow {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--red);
+  transition: gap 0.2s var(--ease);
+}
+.quick-card:hover .arrow { gap: 8px; }
+.quick-card .arrow svg { width: 14px; height: 14px; stroke: var(--red); fill: none; stroke-width: 2; }
+
+/* ─── FIND SERVICES BY ─── */
+.pathways-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.pathway-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  transition: all 0.3s var(--ease);
+  cursor: pointer;
+  position: relative;
+}
+.pathway-card:hover {
+  box-shadow: var(--shadow-lg);
+  border-color: transparent;
+  transform: translateY(-2px);
+}
+.pathway-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.pathway-icon svg { width: 26px; height: 26px; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.pathway-card:nth-child(1) .pathway-icon { background: linear-gradient(135deg, #E0F2FE, #BFDBFE); }
+.pathway-card:nth-child(1) .pathway-icon svg { stroke: #2563EB; }
+.pathway-card:nth-child(2) .pathway-icon { background: linear-gradient(135deg, var(--red-light), #F5C6CE); }
+.pathway-card:nth-child(2) .pathway-icon svg { stroke: var(--red); }
+.pathway-card:nth-child(3) .pathway-icon { background: linear-gradient(135deg, var(--gold-light), #FDE68A); }
+.pathway-card:nth-child(3) .pathway-icon svg { stroke: var(--amber); }
+.pathway-card h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.pathway-card p {
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+  line-height: 1.6;
+  margin-bottom: 18px;
+}
+.pathway-steps {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.pathway-steps .step {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--ink-light);
+  background: var(--surface-cool);
+  padding: 4px 10px;
+  border-radius: 100px;
+}
+.pathway-steps .step-arrow {
+  font-size: 0.65rem;
+  color: var(--ink-muted);
+}
+
+/* ─── DATA DASHBOARD ─── */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.dash-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+}
+.dash-card-title {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-muted);
+  margin-bottom: 20px;
+}
+/* Bar chart */
+.bar-chart { display: flex; flex-direction: column; gap: 10px; }
+.bar-row { display: flex; align-items: center; gap: 12px; }
+.bar-label { width: 90px; font-size: 0.78rem; color: var(--ink-light); text-align: right; flex-shrink: 0; }
+.bar-track { flex: 1; height: 24px; background: var(--surface-cool); border-radius: 4px; overflow: hidden; position: relative; }
+.bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 1.5s var(--ease);
+  display: flex;
+  align-items: center;
+  padding-left: 8px;
+}
+.bar-fill span { font-size: 0.68rem; font-weight: 600; color: #fff; white-space: nowrap; }
+.bar-fill.red { background: var(--red); }
+.bar-fill.blue { background: var(--blue); }
+.bar-fill.gold { background: var(--gold-muted); }
+.bar-fill.gold span { color: var(--ink); }
+.bar-fill.green { background: var(--green); }
+
+/* Donut chart */
+.donut-wrap { display: flex; align-items: center; gap: 28px; }
+.donut-chart {
+  width: 140px;
+  height: 140px;
+  flex-shrink: 0;
+  position: relative;
+}
+.donut-chart svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.donut-chart circle {
+  fill: none;
+  stroke-width: 18;
+  cx: 70;
+  cy: 70;
+  r: 55;
+}
+.donut-bg { stroke: var(--surface-cool); }
+.donut-seg-1 { stroke: var(--red); stroke-dasharray: 155 345; stroke-dashoffset: 0; }
+.donut-seg-2 { stroke: var(--blue); stroke-dasharray: 95 345; stroke-dashoffset: -155; }
+.donut-seg-3 { stroke: var(--gold-muted); stroke-dasharray: 60 345; stroke-dashoffset: -250; }
+.donut-seg-4 { stroke: var(--green); stroke-dasharray: 35 345; stroke-dashoffset: -310; }
+.donut-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.donut-center strong { font-size: 1.2rem; font-weight: 700; color: var(--ink); }
+.donut-center small { font-size: 0.65rem; color: var(--ink-muted); }
+.donut-legend { display: flex; flex-direction: column; gap: 10px; }
+.legend-item { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; color: var(--ink-light); }
+.legend-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+.legend-val { margin-left: auto; font-weight: 600; color: var(--ink); }
+
+/* Status breakdown */
+.status-grid { display: flex; gap: 12px; }
+.status-item {
+  flex: 1;
+  text-align: center;
+  padding: 20px 12px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-cool);
+}
+.status-item .status-num {
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.status-item .status-label { font-size: 0.72rem; color: var(--ink-muted); font-weight: 500; }
+.status-item.completed .status-num { color: var(--green); }
+.status-item.progress .status-num { color: var(--blue); }
+.status-item.planned .status-num { color: var(--ink-muted); }
+
+/* Stat mini cards */
+.scheme-stats { display: flex; flex-direction: column; gap: 12px; }
+.scheme-stat-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: var(--surface-cool);
+  border-radius: var(--radius-sm);
+}
+.scheme-stat-name { font-size: 0.82rem; font-weight: 500; color: var(--ink-light); }
+.scheme-stat-val { font-size: 0.92rem; font-weight: 700; color: var(--ink); }
+
+.explore-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 32px;
+  padding: 12px 28px;
+  background: var(--ink);
+  color: #fff;
+  font-size: 0.88rem;
+  font-weight: 600;
+  border-radius: 100px;
+  transition: all 0.25s var(--ease);
+  text-decoration: none;
+}
+.explore-cta:hover { background: var(--red); color: #fff; gap: 12px; }
+.explore-cta svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; }
+
+/* ─── SCHEMES ─── */
+.schemes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.scheme-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s var(--ease);
+}
+.scheme-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--red), var(--gold));
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.scheme-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.scheme-card:hover::before { opacity: 1; }
+.scheme-tag {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 3px 8px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+.scheme-tag.welfare { background: var(--green-light); color: var(--green); }
+.scheme-tag.housing { background: var(--blue-light); color: var(--blue); }
+.scheme-tag.energy { background: var(--gold-light); color: var(--amber); }
+.scheme-tag.education { background: #FEF3C7; color: #92400E; }
+.scheme-tag.food { background: var(--red-light); color: var(--red); }
+.scheme-card h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.scheme-card p {
+  font-size: 0.82rem;
+  color: var(--ink-muted);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+.scheme-link {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--red);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: gap 0.2s var(--ease);
+}
+.scheme-card:hover .scheme-link { gap: 8px; }
+.scheme-link svg { width: 14px; height: 14px; stroke: var(--red); fill: none; stroke-width: 2; }
+
+/* ─── FOOTER ─── */
+.footer {
+  background: var(--ink);
+  color: rgba(255,255,255,0.7);
+  padding: 56px 0 0;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 40px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.footer-brand .kn { font-size: 1.2rem; font-weight: 600; color: #fff; }
+.footer-brand .en { font-size: 0.72rem; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.06em; }
+.footer-brand p { font-size: 0.82rem; margin-top: 12px; line-height: 1.7; color: rgba(255,255,255,0.5); }
+.footer h4 {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+.footer ul { list-style: none; }
+.footer li { margin-bottom: 8px; }
+.footer li a { color: rgba(255,255,255,0.65); font-size: 0.85rem; }
+.footer li a:hover { color: var(--gold); }
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.3);
+}
+.footer-badges { display: flex; gap: 12px; }
+.footer-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 4px;
+  font-size: 0.68rem;
+  color: rgba(255,255,255,0.4);
+}
+
+/* ─── SCROLL ANIMATIONS ─── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+/* stagger children */
+.stagger-children .fade-up:nth-child(1) { transition-delay: 0.05s; }
+.stagger-children .fade-up:nth-child(2) { transition-delay: 0.1s; }
+.stagger-children .fade-up:nth-child(3) { transition-delay: 0.15s; }
+.stagger-children .fade-up:nth-child(4) { transition-delay: 0.2s; }
+.stagger-children .fade-up:nth-child(5) { transition-delay: 0.25s; }
+.stagger-children .fade-up:nth-child(6) { transition-delay: 0.3s; }
+.stagger-children .fade-up:nth-child(7) { transition-delay: 0.35s; }
+.stagger-children .fade-up:nth-child(8) { transition-delay: 0.4s; }
+
+/* counter animation */
+@keyframes countUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.stat-num .counter { animation: countUp 0.8s var(--ease) both; }
+.stats-row .stat-item:nth-child(1) .counter { animation-delay: 0.2s; }
+.stats-row .stat-item:nth-child(2) .counter { animation-delay: 0.4s; }
+.stats-row .stat-item:nth-child(3) .counter { animation-delay: 0.6s; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1024px) {
+  .quick-grid { grid-template-columns: repeat(3, 1fr); }
+  .dashboard-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .top-bar .container { font-size: 0.72rem; }
+  .top-bar-left { display: none; }
+  .header .container { height: 60px; }
+  .header-nav { display: none; }
+  .search-bar { max-width: none; }
+  .hero { padding: 48px 0 40px; }
+  .hero h1 { font-size: 1.6rem; }
+  .stats-row { gap: 24px; flex-wrap: wrap; }
+  .stat-num { font-size: 1.6rem; }
+  .section { padding: 48px 0; }
+  .quick-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .quick-card { padding: 18px 16px; }
+  .pathways-grid { grid-template-columns: 1fr; gap: 14px; }
+  .schemes-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+  .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+  .donut-wrap { flex-direction: column; }
+  .status-grid { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ TOP UTILITY BAR ═══ -->
+<div class="top-bar">
+  <div class="container">
+    <div class="top-bar-left">
+      <span>Government of Karnataka</span>
+      <a href="#">RTI Disclosure</a>
+      <a href="#">Sitemap</a>
+    </div>
+    <div class="top-bar-right">
+      <div class="lang-toggle">
+        <button class="active">English</button>
+        <button>ಕನ್ನಡ</button>
+      </div>
+      <div class="a11y-controls">
+        <button class="a11y-btn" title="Decrease font size">A-</button>
+        <button class="a11y-btn" title="Increase font size">A+</button>
+        <button class="a11y-btn" title="High contrast">◐</button>
+      </div>
+      <div class="helpline">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        <span>080-22258338</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ HEADER ═══ -->
+<header class="header">
+  <div class="container">
+    <div class="header-brand">
+      <div class="emblem">
+        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      </div>
+      <div class="brand-text">
+        <div class="kn">ಮಾಹಿತಿ ಕಣಜ</div>
+        <div class="en">Mahiti Kanaja</div>
+      </div>
+    </div>
+
+    <div class="search-bar">
+      <input type="text" placeholder="Search for any government service, scheme, or data...">
+      <button aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+    </div>
+
+    <nav class="header-nav">
+      <a href="#">Services</a>
+      <a href="#">Departments</a>
+      <a href="#">Data</a>
+      <a href="#">Help</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-pattern"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="trust-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+        <span>No login required — all information is public</span>
+      </div>
+      <h1>Know how your <span>public funds</span> are being spent</h1>
+      <p>A single window to track government expenditure, access citizen services, and hold your representatives accountable — from village to state level.</p>
+      <div class="stats-row">
+        <div class="stat-item">
+          <div class="stat-num"><span class="counter">450+</span></div>
+          <div class="stat-label">Services</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num"><span class="counter">30+</span></div>
+          <div class="stat-label">Departments</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num"><span class="counter">19M+</span></div>
+          <div class="stat-label">Citizens Served</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ QUICK ACCESS ═══ -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="accent-line"></div>
+      <h2>Most Used Services</h2>
+      <p>Quick access to the services citizens use most. No registration or login needed.</p>
+    </div>
+    <div class="quick-grid stagger-children">
+
+      <a href="#" class="quick-card fade-up">
+        <div class="quick-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+        </div>
+        <h3>Pension Status</h3>
+        <div class="kn-title">ಪಿಂಚಣಿ ಸ್ಥಿತಿ</div>
+        <div class="desc">Check pension disbursement status area-wise or by beneficiary name</div>
+        <div class="arrow">View details <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
+
+      <a href="#" class="quick-card fade-up">
+        <div class="quick-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        </div>
+        <h3>Ration Card Info</h3>
+        <div class="kn-title">ರೇಷನ್ ಕಾರ್ಡ್ ಮಾಹಿತಿ</div>
+        <div class="desc">View ration card details, shop locations, and NFSA beneficiary lists</div>
+        <div class="arrow">View details <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
+
+      <a href="#" class="quick-card fade-up">
+        <div class="quick-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <h3>FIR Status</h3>
+        <div class="kn-title">ಎಫ್‌ಐಆರ್ ಸ್ಥಿತಿ</div>
+        <div class="desc">Track the status of First Information Reports filed with police</div>
+        <div class="arrow">View details <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
+
+      <a href="#" class="quick-card fade-up">
+        <div class="quick-card-icon">
+          <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 5.5 20 16.5 16 14"/><circle cx="9" cy="18" r="2"/></svg>
+        </div>
+        <h3>Traffic Fines</h3>
+        <div class="kn-title">ಸಂಚಾರ ದಂಡ</div>
+        <div class="desc">Look up pending traffic violations and fine amounts by vehicle number</div>
+        <div class="arrow">View details <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
+
+      <a href="#" class="quick-card fade-up">
+        <div class="quick-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 3.4 3 6 3s6-1 6-3v-5"/></svg>
+        </div>
+        <h3>School Information</h3>
+        <div class="kn-title">ಶಾಲಾ ಮಾಹಿತಿ</div>
+        <div class="desc">Find government and aided school details in your area</div>
+        <div class="arrow">View details <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
+
+      <a href="#" class="quick-card fade-up">
+        <div class="quick-card-icon">
+          <svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg>
+        </div>
+        <h3>Village Projects</h3>
+        <div class="kn-title">ಗ್ರಾಮ ಯೋಜನೆಗಳು</div>
+        <div class="desc">Track infrastructure projects and public works in your village or ward</div>
+        <div class="arrow">View details <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
+
+      <a href="#" class="quick-card fade-up">
+        <div class="quick-card-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+        </div>
+        <h3>Scholarship Status</h3>
+        <div class="kn-title">ವಿದ್ಯಾರ್ಥಿವೇತನ</div>
+        <div class="desc">Check pre-matric and post-matric scholarship application status</div>
+        <div class="arrow">View details <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
+
+      <a href="#" class="quick-card fade-up">
+        <div class="quick-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h3>Property Tax</h3>
+        <div class="kn-title">ಆಸ್ತಿ ತೆರಿಗೆ</div>
+        <div class="desc">View house tax collection details and outstanding balances</div>
+        <div class="arrow">View details <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FIND SERVICES BY ═══ -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header">
+      <div class="accent-line"></div>
+      <h2>Find Services Your Way</h2>
+      <p>Three ways to discover the information you need — choose what works best for you.</p>
+    </div>
+    <div class="pathways-grid">
+
+      <div class="pathway-card fade-up">
+        <div class="pathway-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <h3>By Location</h3>
+        <p>Drill down from your district to your specific village or ward to see all available services and data.</p>
+        <div class="pathway-steps">
+          <span class="step">District</span>
+          <span class="step-arrow">→</span>
+          <span class="step">Taluk</span>
+          <span class="step-arrow">→</span>
+          <span class="step">Gram Panchayat</span>
+          <span class="step-arrow">→</span>
+          <span class="step">All Services</span>
+        </div>
+      </div>
+
+      <div class="pathway-card fade-up">
+        <div class="pathway-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <h3>By Department</h3>
+        <p>Browse all 30+ government departments and access their services, data, and contact information directly.</p>
+        <div class="pathway-steps">
+          <span class="step">Agriculture</span>
+          <span class="step">Health</span>
+          <span class="step">Education</span>
+          <span class="step">Revenue</span>
+          <span class="step">+26 more</span>
+        </div>
+      </div>
+
+      <div class="pathway-card fade-up">
+        <div class="pathway-icon">
+          <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <h3>By Life Event</h3>
+        <p>Find relevant services based on what you need right now — from birth registration to retirement benefits.</p>
+        <div class="pathway-steps">
+          <span class="step">Birth</span>
+          <span class="step">Education</span>
+          <span class="step">Employment</span>
+          <span class="step">Housing</span>
+          <span class="step">Retirement</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ DATA DASHBOARD ═══ -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="accent-line"></div>
+      <h2>Public Spending Transparency</h2>
+      <p>Real-time data on how Karnataka's public funds are being allocated and utilized.</p>
+    </div>
+    <div class="dashboard-grid">
+
+      <!-- Bar chart -->
+      <div class="dash-card fade-up">
+        <div class="dash-card-title">District-wise Fund Allocation (₹ Cr)</div>
+        <div class="bar-chart">
+          <div class="bar-row">
+            <div class="bar-label">Bengaluru</div>
+            <div class="bar-track"><div class="bar-fill red" style="width:88%"><span>₹4,280 Cr</span></div></div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Mysuru</div>
+            <div class="bar-track"><div class="bar-fill blue" style="width:62%"><span>₹2,940 Cr</span></div></div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Belagavi</div>
+            <div class="bar-track"><div class="bar-fill gold" style="width:51%"><span>₹2,410 Cr</span></div></div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Kalaburagi</div>
+            <div class="bar-track"><div class="bar-fill green" style="width:44%"><span>₹2,080 Cr</span></div></div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Dharwad</div>
+            <div class="bar-track"><div class="bar-fill red" style="width:38%"><span>₹1,790 Cr</span></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Donut chart -->
+      <div class="dash-card fade-up">
+        <div class="dash-card-title">Pension Disbursements This Quarter</div>
+        <div class="donut-wrap">
+          <div class="donut-chart">
+            <svg viewBox="0 0 140 140">
+              <circle class="donut-bg"/>
+              <circle class="donut-seg-1"/>
+              <circle class="donut-seg-2"/>
+              <circle class="donut-seg-3"/>
+              <circle class="donut-seg-4"/>
+            </svg>
+            <div class="donut-center">
+              <strong>₹892 Cr</strong>
+              <small>Total Q3</small>
+            </div>
+          </div>
+          <div class="donut-legend">
+            <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div>Old Age<div class="legend-val">₹401 Cr</div></div>
+            <div class="legend-item"><div class="legend-dot" style="background:var(--blue)"></div>Widow<div class="legend-val">₹246 Cr</div></div>
+            <div class="legend-item"><div class="legend-dot" style="background:var(--gold-muted)"></div>Disability<div class="legend-val">₹156 Cr</div></div>
+            <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div>Other<div class="legend-val">₹89 Cr</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Status breakdown -->
+      <div class="dash-card fade-up">
+        <div class="dash-card-title">Infrastructure Projects — FY 2025-26</div>
+        <div class="status-grid">
+          <div class="status-item completed">
+            <div class="status-num">1,247</div>
+            <div class="status-label">Completed</div>
+          </div>
+          <div class="status-item progress">
+            <div class="status-num">834</div>
+            <div class="status-label">In Progress</div>
+          </div>
+          <div class="status-item planned">
+            <div class="status-num">412</div>
+            <div class="status-label">Planned</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scheme stats -->
+      <div class="dash-card fade-up">
+        <div class="dash-card-title">Top Schemes by Beneficiaries</div>
+        <div class="scheme-stats">
+          <div class="scheme-stat-row">
+            <span class="scheme-stat-name">Anna Bhagya</span>
+            <span class="scheme-stat-val">42.8 Lakh</span>
+          </div>
+          <div class="scheme-stat-row">
+            <span class="scheme-stat-name">Gruh Jyothi</span>
+            <span class="scheme-stat-val">38.1 Lakh</span>
+          </div>
+          <div class="scheme-stat-row">
+            <span class="scheme-stat-name">Shakthi Yojane</span>
+            <span class="scheme-stat-val">25.6 Lakh</span>
+          </div>
+          <div class="scheme-stat-row">
+            <span class="scheme-stat-name">Gruh Lakshmi</span>
+            <span class="scheme-stat-val">18.3 Lakh</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <a href="#" class="explore-cta">
+      Explore Full Dashboard
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ═══ GOVERNMENT SCHEMES ═══ -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header">
+      <div class="accent-line"></div>
+      <h2>Government Schemes</h2>
+      <p>Key welfare programs currently active in Karnataka. Check your eligibility and track benefits.</p>
+    </div>
+    <div class="schemes-grid stagger-children">
+
+      <div class="scheme-card fade-up">
+        <span class="scheme-tag welfare">Welfare</span>
+        <h3>Shakthi Yojane</h3>
+        <p>Free bus travel for women across Karnataka on all government bus services — KSRTC, BMTC, NWKRTC, and NEKRTC.</p>
+        <a href="#" class="scheme-link">Check Eligibility <svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+
+      <div class="scheme-card fade-up">
+        <span class="scheme-tag energy">Energy</span>
+        <h3>Gruh Jyothi</h3>
+        <p>Free electricity up to 200 units per month for all domestic consumers in the state.</p>
+        <a href="#" class="scheme-link">Check Eligibility <svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+
+      <div class="scheme-card fade-up">
+        <span class="scheme-tag housing">Housing</span>
+        <h3>Gruh Lakshmi</h3>
+        <p>Monthly financial assistance of ₹2,000 to women heads of household across Karnataka.</p>
+        <a href="#" class="scheme-link">Check Eligibility <svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+
+      <div class="scheme-card fade-up">
+        <span class="scheme-tag education">Education</span>
+        <h3>Yuva Nidhi</h3>
+        <p>Monthly stipend of ₹1,500–₹3,000 for unemployed graduates while they search for employment.</p>
+        <a href="#" class="scheme-link">Check Eligibility <svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+
+      <div class="scheme-card fade-up">
+        <span class="scheme-tag food">Food Security</span>
+        <h3>Anna Bhagya</h3>
+        <p>Additional 5 kg of free rice per person per month to BPL families under the food security program.</p>
+        <a href="#" class="scheme-link">Check Eligibility <svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+
+      <div class="scheme-card fade-up">
+        <span class="scheme-tag welfare">Welfare</span>
+        <h3>Parihara Scheme</h3>
+        <p>Compensation and relief disbursement for natural disaster-affected families in Karnataka.</p>
+        <a href="#" class="scheme-link">Check Eligibility <svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="kn">ಮಾಹಿತಿ ಕಣಜ</div>
+        <div class="en">Mahiti Kanaja</div>
+        <p>A transparency initiative by the Government of Karnataka empowering citizens with public information under the Right to Information Act, Section 4(2).</p>
+      </div>
+
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#">All Services</a></li>
+          <li><a href="#">Departments</a></li>
+          <li><a href="#">Data Visualization</a></li>
+          <li><a href="#">Government Orders</a></li>
+          <li><a href="#">Circulars</a></li>
+          <li><a href="#">Policies</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Important Links</h4>
+        <ul>
+          <li><a href="#">Seva Sindhu</a></li>
+          <li><a href="#">Karnataka GIS (KGIS)</a></li>
+          <li><a href="#">e-Governance Portal</a></li>
+          <li><a href="#">RTI Online</a></li>
+          <li><a href="#">Grama Sabha</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Help &amp; Support</h4>
+        <ul>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Feedback</a></li>
+          <li><a href="#">Department Helpline</a></li>
+          <li><a href="#">Website Manual</a></li>
+          <li><a href="#">Accessibility Statement</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 Government of Karnataka — Centre for e-Governance · Designed for citizens, by Karnataka</span>
+      <div class="footer-badges">
+        <span class="footer-badge">WCAG 2.0 AA</span>
+        <span class="footer-badge">GIGW Compliant</span>
+        <span class="footer-badge">CeG/KRN 3.0</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ─── Scroll-triggered fade-in ───
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// ─── Language toggle ───
+document.querySelectorAll('.lang-toggle button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+
+// ─── Font size ───
+let fontSize = 16;
+document.querySelectorAll('.a11y-btn').forEach((btn, i) => {
+  btn.addEventListener('click', () => {
+    if (i === 0 && fontSize > 13) fontSize--;
+    if (i === 1 && fontSize < 22) fontSize++;
+    if (i === 2) document.body.classList.toggle('high-contrast');
+    document.documentElement.style.fontSize = fontSize + 'px';
+  });
+});
+</script>
+</body>
+</html>
