@@ -154,3 +154,30 @@ html.high-contrast .dash-card {
 html.high-contrast .footer {
   background: #000;
 }
+
+/* Top bar stays dark in both modes — uses hardcoded bg, not --color-ink */
+html.high-contrast .top-bar {
+  background: #111;
+  color: rgba(255,255,255,0.85);
+}
+html.high-contrast .top-bar a { color: rgba(255,255,255,0.85); }
+html.high-contrast .top-bar a:hover { color: var(--color-gold); }
+html.high-contrast .top-bar .a11y-btn {
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.8);
+}
+html.high-contrast .top-bar .lang-toggle button {
+  color: rgba(255,255,255,0.6);
+}
+html.high-contrast .top-bar .lang-toggle button.active {
+  color: #fff;
+}
+
+/* Emblem stays red in high contrast */
+html.high-contrast .emblem { background: var(--color-red); }
+
+/* Section backgrounds */
+html.high-contrast .section-alt,
+html.high-contrast .section-block { background: #000; }
+html.high-contrast .hero-section { background: #000 !important; }
